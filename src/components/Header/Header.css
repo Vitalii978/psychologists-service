@@ -1,0 +1,164 @@
+.header {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  column-gap: 20px;
+  border-bottom: 1px solid rgba(25, 26, 21, 0.1);
+  align-items: center;
+  justify-content: center;
+  padding: 24px 128px;
+}
+
+/* Контейнер с процентными отступами для fluid верстки
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5%; Процентные отступы вместо фиксированных
+} */
+
+.header-content {
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  height: 24px;
+  /* width: 218px; */
+}
+
+.logo {
+  /* display: flex;
+  align-items: center; */
+  text-decoration: none;
+  flex-shrink: 0; /* Не сжимается */
+}
+
+.logo-blue {
+font-weight: 700;
+font-size: 20px;
+line-height: 1.2;
+color: #3470ff
+}
+
+.logo-black {
+font-weight: 600;
+color: #191a15;
+font-size: 20px;
+line-height: 1.2;
+}
+
+.navigation {
+  display: flex;
+  gap: 40px; /* 130px в rem */
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+.nav-link {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #191a15;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #3E85F3;
+}
+
+.nav-link {
+  position: relative;       /* для псевдоэлемента */
+  /* display: inline-block; */
+}
+    
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 135%;
+      display: block;
+      width: 8px;
+      height: 8px;
+      transform: translate(-50%, -50%);
+      border-radius: 50px;
+      background-color: #3E85F3;
+    }
+
+/* export const LogoContainer = styled.div`
+  a {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    color: ${theme.colors.black};
+  }
+  span {
+    color: ${theme.colors.green};
+  }
+`; */
+
+.auth-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-register {
+  padding: 14px 39px;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  border-radius: 30px;
+  background-color: transparent;
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #3470ff;
+    color: #fbfbfb;
+    border: 1px solid  #3470ff;
+  }
+}
+
+.nameContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+  span {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #191a15;
+  }
+}
+
+.iconContainer {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #3470ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 16px;
+    height: 16px;
+    fill:  #fbfbfb;
+  }
+}

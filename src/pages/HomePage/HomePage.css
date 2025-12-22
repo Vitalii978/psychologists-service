@@ -1,0 +1,198 @@
+.home-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+  width: 100%;
+  overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+}
+
+.home-main {
+  padding: 4rem 0; /* 64px в rem */
+  width: 100%;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* 40px в rem */
+  width: 100%;
+}
+
+/* Убираем медиазапрос, делаем на чистом flex */
+.home-left {
+  width: 100%;
+  max-width: 37.1875rem; /* 595px в rem */
+  order: 1; /* Всегда сверху на мобильных */
+}
+
+.home-title {
+  font-size: 4rem; /* 64px в rem */
+  font-weight: 700;
+  line-height: 1.1;
+  color: #000000;
+  margin-bottom: 3rem; /* 48px в rem */
+}
+
+/* ТОЛЬКО слово depths синее */
+.depths-blue {
+  color: #3E85F3;
+}
+
+.home-description {
+  font-size: 1.5rem; /* 24px в rem */
+  line-height: 1.3;
+  color: #666666;
+  margin-bottom: 3rem; /* 48px в rem */
+  max-width: 37.1875rem; /* 595px в rem */
+}
+
+.btn-get-started {
+  padding: 1.125rem 4rem; /* 18px 64px в rem */
+  background-color: #3E85F3;
+  color: #ffffff;
+  font-size: 1.25rem; /* 20px в rem */
+  font-weight: 500;
+  border: none;
+  border-radius: 1.875rem; /* 30px в rem */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  width: fit-content;
+}
+
+.btn-get-started:hover {
+  background-color: #2b78e3;
+}
+
+.home-right {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  order: 2; /* Всегда снизу на мобильных */
+}
+
+.image-container {
+  position: relative;
+  width: 29rem; /* 464px в rem */
+  height: 32.875rem; /* 526px в rem */
+  margin: 0 auto;
+}
+
+.main-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f3f3f3 0%, #e0e0e0 100%);
+  border-radius: 0.625rem; /* 10px в rem */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666666;
+  font-size: 1.125rem; /* 18px в rem */
+}
+
+.green-square {
+  position: absolute;
+  width: 2.5rem; /* 40px в rem */
+  height: 2.5rem; /* 40px в rem */
+  background-color: #54BE96;
+  border-radius: 0.25rem; /* 4px в rem */
+  transform: rotate(15deg);
+  top: 11.5625rem; /* 185px в rem */
+  left: -2.4375rem; /* -39px в rem */
+  z-index: 1;
+}
+
+.yellow-square {
+  position: absolute;
+  width: 3rem; /* 48px в rem */
+  height: 3rem; /* 48px в rem */
+  background-color: #FBC75E;
+  border-radius: 0.25rem; /* 4px в rem */
+  transform: rotate(-15deg);
+  top: 2.375rem; /* 38px в rem */
+  right: -0.9375rem; /* -15px в rem */
+  z-index: 1;
+}
+
+.blue-card {
+  position: absolute;
+  width: 19.4375rem; /* 311px в rem */
+  height: 7.375rem; /* 118px в rem */
+  background-color: #3E85F3;
+  border-radius: 1.25rem; /* 20px в rem */
+  padding: 1.5rem; /* 24px в rem */
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 16px в rem */
+  top: 20.8125rem; /* 333px в rem */
+  left: -6.3125rem; /* -101px в rem */
+  z-index: 2;
+}
+
+.card-icon {
+  width: 3.5rem; /* 56px в rem */
+  height: 3.5rem; /* 56px в rem */
+  background-color: #ffffff;
+  border-radius: 0.625rem; /* 10px в rem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.check-icon {
+  width: 1.75rem; /* 28px в rem */
+  height: 1.75rem; /* 28px в rem */
+  color: #3E85F3;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.125rem; /* 18px в rem */
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 0.25rem; /* 4px в rem */
+}
+
+.card-number {
+  font-size: 2rem; /* 32px в rem */
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Убираем медиазапросы, делаем fluid через min-width */
+@media (min-width: 64rem) { /* 1024px в rem */
+  .home-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .home-left {
+    order: 1;
+    padding-top: 3rem; /* 48px в rem */
+  }
+  
+  .home-right {
+    order: 2;
+  }
+}
+
+/* Только для очень узких экранов скрываем декоративные элементы */
+@media (max-width: 48rem) { /* 768px в rem */
+  .green-square,
+  .yellow-square,
+  .blue-card {
+    display: none;
+  }
+  
+  .image-container {
+    width: 100%;
+    max-width: 29rem; /* 464px в rem */
+    height: 25rem; /* 400px в rem */
+  }
+}
