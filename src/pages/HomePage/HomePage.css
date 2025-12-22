@@ -1,171 +1,257 @@
 .home-page {
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #fbfbfb;
   width: 100%;
   overflow-x: hidden; /* Запрещаем горизонтальный скролл */
 }
 
 .home-main {
-  padding: 4rem 0; /* 64px в rem */
-  width: 100%;
+  padding: 78px 128px; 
+  /* width: 100%; */
 }
 
 .home-content {
+  flex-grow: 1;
   display: flex;
+  
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  gap: 2.5rem; /* 40px в rem */
+  gap: 125px; 
   width: 100%;
+    position: relative;
+    margin: 0 auto;
 }
 
-/* Убираем медиазапрос, делаем на чистом flex */
+  @media screen and (min-width: 1000px) {
+    .home-content {
+    flex-direction: row;
+    gap: 125px;
+  }
+}
+
 .home-left {
-  width: 100%;
-  max-width: 37.1875rem; /* 595px в rem */
-  order: 1; /* Всегда сверху на мобильных */
+  max-width: 595px; 
+  order: 1;
+  padding: 48px 0 40px 0; /* Всегда сверху на мобильных */
 }
 
 .home-title {
-  font-size: 4rem; /* 64px в rem */
-  font-weight: 700;
-  line-height: 1.1;
-  color: #000000;
-  margin-bottom: 3rem; /* 48px в rem */
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.03;
+  color: #191a15;
+  margin-bottom: 20px; /* 48px в rem */
 }
+
+  @media screen and (min-width: 768px) {
+    .home-title {
+      font-size: 80px;
+      line-height: 1.03;
+    }
+  }
+
+
 
 /* ТОЛЬКО слово depths синее */
 .depths-blue {
-  color: #3E85F3;
+  font-style: italic;
+  color: #3470ff;
 }
 
 .home-description {
-  font-size: 1.5rem; /* 24px в rem */
+  font-weight: 500;
+  font-size: 18px;
   line-height: 1.3;
-  color: #666666;
-  margin-bottom: 3rem; /* 48px в rem */
-  max-width: 37.1875rem; /* 595px в rem */
+  color: #191a15;
+  margin-bottom: 40px; 
+  max-width: 510px 
 }
 
+
 .btn-get-started {
-  padding: 1.125rem 4rem; /* 18px 64px в rem */
-  background-color: #3E85F3;
-  color: #ffffff;
-  font-size: 1.25rem; /* 20px в rem */
+  
+  width: 235px;
+  height: 60px;
   font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #fbfbfb;
+  background-color: #3470ff;
+  border-radius: 50px;
   border: none;
-  border-radius: 1.875rem; /* 30px в rem */
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: block;
-  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  transition: background-color 0.3s ease;
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: #fbfbfb;
+  }
 }
 
 .btn-get-started:hover {
-  background-color: #2b78e3;
+  background-color: #255ee8;;
 }
 
 .home-right {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  /* height: 526px;  */
+  /* display: flex; */
+  /* justify-content: center; */
   order: 2; /* Всегда снизу на мобильных */
+  
 }
 
 .image-container {
   position: relative;
-  width: 29rem; /* 464px в rem */
-  height: 32.875rem; /* 526px в rem */
+  /* width: 464px;  */
+  height: 526px; 
   margin: 0 auto;
+     width: 100%;
+  background-image: url('/src/assets/images/hero@1x.jpg');
+  /* box-sizing: border-box; */
+  /* background-repeat: no-repeat; */
+  background-position: center bottom;
+  background-size: cover;
+  border-radius: 10px;
 }
 
-.main-image {
+   @media (min-device-pixel-ratio: 2),      /* для айфонов и тд */
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url('/src/assets/images/hero@2x.jpg');
+  }
+
+/* .main-image {
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, #f3f3f3 0%, #e0e0e0 100%);
-  border-radius: 0.625rem; /* 10px в rem */
+   10px в rem
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #666666;
-  font-size: 1.125rem; /* 18px в rem */
-}
+  font-size: 18px; 
+} */
 
 .green-square {
   position: absolute;
-  width: 2.5rem; /* 40px в rem */
-  height: 2.5rem; /* 40px в rem */
-  background-color: #54BE96;
-  border-radius: 0.25rem; /* 4px в rem */
-  transform: rotate(15deg);
-  top: 11.5625rem; /* 185px в rem */
-  left: -2.4375rem; /* -39px в rem */
+  width: 40px;
+  height: 40px;
+  transform: rotate(-15deg);
+  border-radius: 10px;
+  background: #54be96;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 30%;
+  left: -7%;
   z-index: 1;
+  svg {
+    width: 9px;
+    height: 15px;
+    fill: #fbfbfb;
+  }
 }
+
+  /* @media screen and (max-width: ${theme.breakpoint.tablet}) {
+    left: 0%;
+  } */
+
 
 .yellow-square {
   position: absolute;
-  width: 3rem; /* 48px в rem */
-  height: 3rem; /* 48px в rem */
-  background-color: #FBC75E;
-  border-radius: 0.25rem; /* 4px в rem */
-  transform: rotate(-15deg);
-  top: 2.375rem; /* 38px в rem */
-  right: -0.9375rem; /* -15px в rem */
-  z-index: 1;
+  width: 48px;
+  height: 48px;
+  transform: rotate(15deg);
+  border-radius: 10px;
+  background: rgb(251, 199, 94);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -8%;
+  top: 9%;
+   z-index: 1;
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #fbfbfb;
+    transform: rotate(-15deg);
+    
+  }
 }
+
+  /* @media screen and (max-width: ${theme.breakpoint.tablet}) {
+    right: 0%; */
 
 .blue-card {
   position: absolute;
-  width: 19.4375rem; /* 311px в rem */
-  height: 7.375rem; /* 118px в rem */
+  top: 65%;
+  left: -20%;
+  max-width: 311px;
+  width: 100%;
+  max-height: 118px;
   background-color: #3E85F3;
-  border-radius: 1.25rem; /* 20px в rem */
-  padding: 1.5rem; /* 24px в rem */
+  border-radius: 20px;
+  padding: 32px; 
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 1rem; /* 16px в rem */
-  top: 20.8125rem; /* 333px в rem */
-  left: -6.3125rem; /* -101px в rem */
+  justify-content: center;
+  gap: 16px; 
   z-index: 2;
 }
 
+  /* @media screen and (max-width: 768px) {
+    left: 0%;
+  } */
+
 .card-icon {
-  width: 3.5rem; /* 56px в rem */
-  height: 3.5rem; /* 56px в rem */
+  width: 54px;
+  height: 54px;
   background-color: #ffffff;
-  border-radius: 0.625rem; /* 10px в rem */
+  border-radius: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  svg {
+    width: 22px;
+    height: 15px;
+    fill:  #3470ff;
+    
+  }
 }
 
-.check-icon {
-  width: 1.75rem; /* 28px в rem */
-  height: 1.75rem; /* 28px в rem */
-  color: #3E85F3;
-}
 
 .card-text {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .card-title {
-  font-size: 1.125rem; /* 18px в rem */
-  font-weight: 500;
-  color: #ffffff;
+  font-size: 14px; /* 18px в rem */
+  font-weight: 400;
+  color: rgba(251, 251, 251, 0.5);
   margin-bottom: 0.25rem; /* 4px в rem */
 }
 
 .card-number {
-  font-size: 2rem; /* 32px в rem */
+  font-size: 24px;
   font-weight: 700;
+  line-height: 1.2;
   color: #ffffff;
 }
 
-/* Убираем медиазапросы, делаем fluid через min-width */
-@media (min-width: 64rem) { /* 1024px в rem */
+
+/* @media (min-width: 64rem) { 
   .home-content {
     flex-direction: row;
     align-items: flex-start;
@@ -174,7 +260,7 @@
   
   .home-left {
     order: 1;
-    padding-top: 3rem; /* 48px в rem */
+    padding-top: 3rem; 
   }
   
   .home-right {
@@ -182,8 +268,8 @@
   }
 }
 
-/* Только для очень узких экранов скрываем декоративные элементы */
-@media (max-width: 48rem) { /* 768px в rem */
+
+@media (max-width: 48rem) { 
   .green-square,
   .yellow-square,
   .blue-card {
@@ -192,7 +278,7 @@
   
   .image-container {
     width: 100%;
-    max-width: 29rem; /* 464px в rem */
-    height: 25rem; /* 400px в rem */
+    max-width: 29rem; 
+    height: 25rem; 
   }
-}
+} */

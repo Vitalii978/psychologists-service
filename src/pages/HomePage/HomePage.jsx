@@ -138,8 +138,10 @@
 
 import Header from '../../components/Header/Header';
 import './HomePage.css';
+import svg from "../../assets/images/icons.svg";
+import { Link } from "react-router-dom";
 
-const HomePage = () => {
+const HomePage = () => {  
   return (
     <div className="home-page">
       <Header />
@@ -147,7 +149,6 @@ const HomePage = () => {
       <main className="home-main">
         <div className="container">
           <div className="home-content">
-            
             <div className="home-left">
               <h1 className="home-title">
                 The road to the 
@@ -158,21 +159,43 @@ const HomePage = () => {
               <p className="home-description">
                 We help you to reveal your potential, overcome challenges and find a guide in your own life with the help of our experienced psychologists.
               </p>
-              
-              <button className="btn-get-started">Get started</button>
+
+              <Link to="/psychologists">
+          <button className="btn-get-started">
+            Get started
+            <svg>
+              <use href={`${svg}#icon-arrow`} />
+            </svg>
+          </button>
+              </Link>
             </div>
             
             <div className="home-right">
               <div className="image-container">
-                <div className="main-image"></div>
+                <div className="main-image">
+                  {/* <img 
+                    src="/images/hero@1x.jpg" 
+                    srcSet="/src/assets/images/hero@1x.jpg, /src/assets/images/hero@2x.jpg 2x" 
+                    alt="Psychologist" 
+                    className="main-image"
+                  /> */}
+                </div>
                 
-                <div className="green-square"></div>
-                <div className="yellow-square"></div>
+                <div className="green-square">
+                    <svg>
+                      <use href={`${svg}#icon-question`} />
+                    </svg>
+                </div>
+                <div className="yellow-square">
+                    <svg>
+                      <use href={`${svg}#icon-users`} />
+                    </svg>
+                </div>
                 
                 <div className="blue-card">
                   <div className="card-icon">
-                    <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+                    <svg>
+                      <use href={`${svg}#icon-check`} />
                     </svg>
                   </div>
                   <div className="card-text">
