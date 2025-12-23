@@ -4,12 +4,24 @@
   flex-direction: row;
   flex-wrap: wrap;
   row-gap: 30px;
-  column-gap: 20px;
+  /* column-gap: 345px; */
   border-bottom: 1px solid rgba(25, 26, 21, 0.1);
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 24px 128px;
+  /* padding: 24px 36px; */
+  justify-content: space-between;
+  
 }
+
+
+  /* @media screen and (max-width: 768px) {
+    .btn-register {
+  padding: 14px 20px;
+  }
+} */
+
+
 
 /* Контейнер с процентными отступами для fluid верстки
 .container {
@@ -21,10 +33,20 @@
 
 .header-content {
   display: flex;
-  /* align-items: center; */
-  /* justify-content: space-between; */
-  height: 24px;
-  /* width: 218px; */
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  column-gap: 130px;
+  justify-content: space-between;
+  /* height: 24px;
+  max-width: 526px; */
+  
+}
+
+  @media screen and (max-width: 1100px) {
+    .header, .header-content {
+    justify-content: center;
+  }
 }
 
 .logo {
@@ -32,6 +54,8 @@
   align-items: center; */
   text-decoration: none;
   flex-shrink: 0; /* Не сжимается */
+  height: 24px;
+  
 }
 
 .logo-blue {
@@ -50,8 +74,9 @@ line-height: 1.2;
 
 .navigation {
   display: flex;
-  gap: 40px; /* 130px в rem */
-  margin: 0 auto;
+  gap: 40px; 
+  align-items: center;
+  /* margin: 0 auto; */
   white-space: nowrap;
 }
 
@@ -105,11 +130,13 @@ line-height: 1.2;
   flex-direction: row;
   gap: 8px;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  /* margin-left: auto; */
 }
 
 .btn-register {
   padding: 14px 39px;
+  white-space: nowrap;
   border: 1px solid rgba(25, 26, 21, 0.2);
   border-radius: 30px;
   background-color: transparent;
@@ -135,6 +162,7 @@ line-height: 1.2;
 
 .userContainer {
   display: flex;
+  white-space: nowrap;
   flex-direction: row;
   gap: 28px;
   align-items: center;

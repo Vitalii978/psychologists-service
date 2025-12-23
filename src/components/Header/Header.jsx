@@ -33,38 +33,38 @@ const Header = () => {
   // const user = { displayName: 'John Doe' }; // Раскомментируйте для теста
   return (
     <header className="header">
-
+      
         <div className="header-content">
           <Link to="/" className="logo">
-            <span className="logo-blue">psychologists</span>
-            <span className="logo-black">.services</span>
+            <span className="logo-blue">psychologists.</span>
+            <span className="logo-black">services</span>
           </Link>
-        </div>  
+        
           <nav className="navigation">
-  <NavLink 
-    to="/" 
-    className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-  >
-    Home
-  </NavLink>
+            <NavLink 
+                to="/" 
+                  className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
+            >
+              Home
+            </NavLink>
 
-  <NavLink 
-    to="/psychologists" 
-    className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-  >
-    Psychologists
-  </NavLink>
-
-  {user && (
-    <NavLink 
-      to="/favorites" 
-      className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-    >
-      Favorites
-    </NavLink>
-  )}
-</nav>
-          
+            <NavLink 
+                to="/psychologists" 
+                  className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
+            >
+              Psychologists
+            </NavLink>
+        
+        {user && (
+            <NavLink 
+                to="/favorites" 
+                  className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
+            >
+              Favorites
+            </NavLink>
+        )}  
+          </nav>
+        </div>    
         <div>
           {user ? (
             <div className="userContainer">
