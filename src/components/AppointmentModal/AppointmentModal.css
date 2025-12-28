@@ -1,0 +1,174 @@
+/* Модальное окно записи */
+.appointment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.appointment-modal-content {
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+
+.appointment-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(25, 26, 21, 0.1);
+}
+
+.appointment-modal-title {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #191a15;
+  margin: 0;
+  flex-grow: 1;
+  padding-right: 20px;
+}
+
+.appointment-modal-close-btn {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.appointment-modal-close-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: rgba(25, 26, 21, 0.5);
+  stroke-width: 2.5;
+  transition: stroke 0.3s ease;
+}
+
+.appointment-modal-close-btn:hover svg {
+  stroke: #191a15;
+}
+
+.appointment-modal-body {
+  margin-bottom: 32px;
+}
+
+.appointment-modal-body p {
+  font-size: 16px;
+  color: #191a15;
+  line-height: 1.5;
+}
+
+.appointment-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(25, 26, 21, 0.1);
+}
+
+.appointment-btn-secondary {
+  padding: 12px 24px;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  border-radius: 30px;
+  background-color: transparent;
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.appointment-btn-secondary:hover {
+  background-color: rgba(25, 26, 21, 0.05);
+}
+
+.appointment-btn-primary {
+  padding: 12px 24px;
+  border: 1px solid #3470ff;
+  border-radius: 30px;
+  background-color: #3470ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.appointment-btn-primary:hover {
+  background-color: #255ee8;
+  border-color: #255ee8;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Адаптивность */
+@media screen and (max-width: 768px) {
+  .appointment-modal-content {
+    padding: 32px;
+    width: 95%;
+  }
+  
+  .appointment-modal-title {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .appointment-modal-content {
+    padding: 24px;
+  }
+  
+  .appointment-modal-title {
+    font-size: 24px;
+  }
+  
+  .appointment-modal-footer {
+    flex-direction: column;
+  }
+  
+  .appointment-btn-secondary,
+  .appointment-btn-primary {
+    width: 100%;
+  }
+}

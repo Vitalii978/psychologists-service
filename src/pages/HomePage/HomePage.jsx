@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const HomePage = () => {  
   return (
     <div className="home-page">
-      <Header />
+      {/* <Header /> */}
       
       <main className="home-main">
           <div className="home-content">

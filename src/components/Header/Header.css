@@ -11,7 +11,8 @@
   padding: 24px 128px;
   /* padding: 24px 36px; */
   justify-content: space-between;
-  
+  width: 100%;
+  max-width: 1440px;
 }
 
 

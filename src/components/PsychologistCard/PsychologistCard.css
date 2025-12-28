@@ -1,0 +1,456 @@
+/* Карточка психолога - горизонтальный макет */
+.psychologist-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 32px;
+  display: flex;
+  gap: 40px;
+}
+
+.psychologist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Левая часть - фото */
+.card-left {
+  flex-shrink: 0;
+}
+
+.psychologist-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #3470ff, #3E85F3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-placeholder svg {
+  width: 60px;
+  height: 60px;
+  fill: #ffffff;
+}
+
+/* Правая часть - информация */
+.card-right {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Верхняя строка: заголовок и кнопки */
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.psychologist-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #3470ff;
+  margin: 0;
+}
+
+.psychologist-name {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #191a15;
+  margin: 0;
+}
+
+/* Рейтинг, цена и сердечко в одну строку */
+.rating-price-favorite {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.rating-price-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.rating-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rating-label {
+  font-size: 16px;
+  color: rgba(25, 26, 21, 0.5);
+}
+
+.rating-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #191a15;
+}
+
+.rating-separator {
+  color: rgba(25, 26, 21, 0.2);
+  margin-left: 8px;
+}
+
+.price-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-label {
+  font-size: 16px;
+  color: rgba(25, 26, 21, 0.5);
+}
+
+.price-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3470ff;
+}
+
+/* Кнопка сердца */
+.favorite-btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.favorite-btn svg {
+  width: 100%;
+  height: 100%;
+  stroke: rgba(25, 26, 21, 0.2);
+  stroke-width: 2.9424;
+  fill: transparent;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn:hover svg {
+  stroke: rgba(220, 20, 60, 0.6);
+}
+
+.favorite-btn.favorited svg {
+  stroke: #dc143c;
+  fill: #dc143c;
+}
+
+/* Информационные блоки в овальных формах */
+.info-blocks-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.info-block {
+  padding: 12px 18px;
+  background-color: #f8f9fa; /* Светло-серый тон */
+  border-radius: 30px; /* Овальная форма */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-label {
+  font-size: 16px;
+  color: rgba(25, 26, 21, 0.5);
+  white-space: nowrap;
+}
+
+.info-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: #191a15;
+}
+
+/* Описание */
+.description-section {
+  margin-bottom: 8px;
+}
+
+.about-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(25, 26, 21, 0.7);
+  margin: 0;
+}
+
+/* Отзывы с Read more */
+.reviews-section {
+  margin-bottom: 8px;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.reviews-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #191a15;
+  margin: 0;
+}
+
+.reviews-read-more-btn {
+  background: none;
+  border: none;
+  color: #3470ff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.3s ease;
+}
+
+.reviews-read-more-btn:hover {
+  color: #255ee8;
+  text-decoration-thickness: 2px;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-item {
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+}
+
+.reviewer-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.reviewer-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #3470ff;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.reviewer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  color: #191a15;
+  font-size: 14px;
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.review-rating svg {
+  width: 14px;
+  height: 14px;
+  fill: #ffc107;
+}
+
+.rating-number {
+  font-size: 14px;
+  color: #191a15;
+  font-weight: 500;
+}
+
+.review-comment {
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(25, 26, 21, 0.7);
+  margin: 0;
+}
+
+/* Кнопка записи - слева */
+.appointment-section {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+.appointment-btn {
+  padding: 14px 32px;
+  border: 1px solid #3470ff;
+  border-radius: 30px;
+  background-color: #3470ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 226px;
+}
+
+.appointment-btn:hover {
+  background-color: #255ee8;
+  border-color: #255ee8;
+}
+
+.description-section {
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #3470ff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0 0 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.3s ease;
+  align-self: flex-start;
+  margin-top: 12px;
+}
+
+.read-more-btn:hover {
+  color: #255ee8;
+  text-decoration-thickness: 2px;
+}
+
+/* В PsychologistsPage.css проверяем наличие: */
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.load-more-btn {
+  padding: 14px 40px;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  border-radius: 30px;
+  background-color: transparent;
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 160px;
+}
+
+.load-more-btn:hover {
+  background-color: #3470ff;
+  color: #fbfbfb;
+  border-color: #3470ff;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 1100px) {
+  .psychologist-card {
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px;
+  }
+  
+  .card-left {
+    align-self: center;
+  }
+  
+  .card-top-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .rating-price-favorite {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .info-blocks-container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .psychologist-card {
+    padding: 24px;
+  }
+  
+  .psychologist-name {
+    font-size: 24px;
+  }
+  
+  .rating-price-container {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .appointment-btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .psychologist-card {
+    padding: 20px;
+  }
+  
+  .psychologist-avatar {
+    width: 100px;
+    height: 100px;
+  }
+}

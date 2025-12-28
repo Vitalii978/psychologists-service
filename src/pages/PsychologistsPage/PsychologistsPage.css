@@ -1,0 +1,139 @@
+/* Основные стили страницы Psychologists */
+.psychologists-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fbfbfb;
+}
+
+.psychologists-main {
+  padding: 64px 128px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Фильтры */
+.filters-section {
+  margin-bottom: 48px;
+  width: 226px; /* Ширина 226px с левой стороны */
+}
+
+.filters-label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #8a8a89;
+  margin-bottom: 8px;
+}
+
+/* Обертка для select */
+.filter-select-wrapper {
+  position: relative;
+}
+
+.filter-select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 14px 18px;
+  padding-right: 40px;
+  border: none;
+  border-radius: 14px;
+  background-color: #3470ff; /* СИНИЙ ЦВЕТ */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #ffffff; /* БЕЛЫЙ ШРИФТ */
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  transition: all 0.3s ease;
+}
+
+.filter-select:hover {
+  background-color: #255ee8;
+}
+
+.filter-select:focus {
+  background-color: #255ee8;
+}
+
+.filter-select option {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.3);
+  padding: 12px;
+  background-color: #ffffff;
+}
+
+.filter-select option:checked {
+  color: #191a15; /* Активная категория */
+}
+
+/* Сетка карточек - ОДИН СТОЛБЕЦ */
+.psychologists-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+/* Контейнер для кнопки Load More */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.load-more-btn {
+  padding: 14px 40px;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  border-radius: 30px;
+  background-color: transparent;
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 160px;
+}
+
+.load-more-btn:hover {
+  background-color: #3470ff;
+  color: #fbfbfb;
+  border-color: #3470ff;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 1100px) {
+  .psychologists-main {
+    padding: 48px 36px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .psychologists-main {
+    padding: 32px 16px;
+  }
+  
+  .filters-section {
+    width: 100%;
+  }
+}
