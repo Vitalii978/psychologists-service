@@ -1,0 +1,190 @@
+/* Контейнер для выбора времени */
+.time-select-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Обертка для выбранного времени */
+.time-selected-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  background-color: white;
+  height: 52px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+/* .time-selected-wrapper:hover {
+  border-color: #3470ff;
+}
+
+.time-selected-wrapper:focus-within {
+  border-color: #3470ff;
+  outline: none;
+} */
+
+
+
+.clock-icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(25, 26, 21, 0.5);
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+/* Отображение выбранного времени */
+.time-selected-display {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
+  color: #191a15;
+}
+
+.time-selected-value {
+  font-weight: 500;
+}
+
+.time-placeholder {
+  color: rgba(25, 26, 21, 0.5);
+  font-weight: 400;
+}
+
+/* Кнопка раскрытия выпадающего списка */
+.time-dropdown-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(25, 26, 21, 0.5);
+  transition: color 0.3s;
+}
+
+.time-dropdown-btn:hover {
+  color: #3470ff;
+}
+
+.time-dropdown-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* Затемнение фона при открытом списке */
+.time-dropback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+/* Выпадающий список */
+.time-dropdown {
+  position: absolute;
+  width: 151px;
+  top: calc(100% + 8px); /* Отступ от инпута */
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Поверх других элементов */
+  max-height: 300px;
+  overflow-y: hidden; /* Убираем скролл у контейнера */
+}
+
+/* Заголовок выпадающего списка */
+.time-dropdown-header {
+  padding: 16px;
+    display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(25, 26, 21, 0.7);
+}
+
+
+
+.dropdown-clock-icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(25, 26, 21, 0.7);
+  stroke: #191a15;
+  /* stroke-width: 1.5; */
+  fill: transparent;
+}
+
+/* Список опций времени */
+.time-options-list {
+  max-width: 150px;
+  max-height: 180px;
+  overflow-y: auto; /* Скролл только для списка */
+  padding: 8px 0;
+}
+
+.time-option {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #191a15;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.time-option:hover {
+  background-color: rgba(52, 112, 255, 0.1);
+}
+
+.time-option.selected {
+  background-color: rgba(52, 112, 255, 0.2);
+  color: #3470ff;
+  font-weight: 500;
+}
+
+.time-option.selected::after {
+  content: "✓";
+  position: absolute;
+  right: 16px;
+  color: #3470ff;
+  font-weight: bold;
+}
+
+.time-option-value {
+  flex: 1;
+}
+
+/* Стили для скроллбара */
+.time-options-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.time-options-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.time-options-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.time-options-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

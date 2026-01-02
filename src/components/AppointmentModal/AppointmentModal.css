@@ -1,174 +1,287 @@
-/* Модальное окно записи */
-.appointment-modal-overlay {
+/* Фон модального окна */
+.modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(25, 26, 21, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: 20px;
-  animation: fadeIn 0.3s ease;
+  /* padding: 20px; */
 }
 
-.appointment-modal-content {
-  background-color: #ffffff;
+/* Само модальное окно */
+.modal-content {
+  background-color:  #fbfbfb;;
   border-radius: 30px;
-  padding: 40px;
-  width: 100%;
+  padding: 30px;
+  width: 100%; 
   max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 100vh;
   position: relative;
-  animation: slideIn 0.3s ease;
 }
 
-.appointment-modal-header {
+/* Заголовок модального окна */
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(25, 26, 21, 0.1);
 }
 
-.appointment-modal-title {
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #191a15;
-  margin: 0;
-  flex-grow: 1;
-  padding-right: 20px;
+.modal-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 32px;
+    color: rgb(25, 26, 21);
+    margin-bottom: 10px;
 }
 
-.appointment-modal-close-btn {
-  background: none;
-  border: none;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  padding: 0;
+/* Описание под заголовком */
+.modal-description {
+  
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    color: rgba(25, 26, 21, 0.5);
+}
+
+.description-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Кнопка закрытия (крестик) */
+.close-btn {
+  position: absolute;
+  right: 20px;    
+  top: 20px;      
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 32px;    
+  height: 32px;   
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.close-btn svg {
+    width: 26px;    
+    height: 26px;   
+    stroke: #191a15;
+    stroke-width: 2;
+    transition: stroke 0.3s ease;
+}
+
+
+/* Информация о психологе с фото */
+.psychologist-info-with-photo {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.psychologist-photo {
   flex-shrink: 0;
 }
 
-.appointment-modal-close-btn svg {
-  width: 24px;
-  height: 24px;
-  stroke: rgba(25, 26, 21, 0.5);
-  stroke-width: 2.5;
-  transition: stroke 0.3s ease;
+.psychologist-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  object-fit: cover;
 }
 
-.appointment-modal-close-btn:hover svg {
-  stroke: #191a15;
+.psychologist-avatar-placeholder {
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+  background-color: #3470ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.appointment-modal-body {
-  margin-bottom: 32px;
+.psychologist-avatar-placeholder svg {
+  width: 32px;
+  height: 32px;
+  color: white;
 }
 
-.appointment-modal-body p {
+.psychologist-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Поменяли порядок: сначала "Your psychologist" */
+.psychologist-title {
+  color: rgba(25, 26, 21, 0.5);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+/* Затем имя психолога */
+.psychologist-name-label {
+  color: rgb(25, 26, 21);
   font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+/* Форма */
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Уменьшили отступ между полями */
+}
+
+/* Строка с двумя полями (Phone и Time) */
+.form-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.form-group-half {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Общие стили для групп формы - УБРАЛИ ЛЕЙБЛЫ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Уменьшили отступ между полем и ошибкой */
+}
+
+/* Общие стили для input, select и textarea */
+.form-input,
+.form-textarea {
+    width: 100%;
+    height: 52px;
+    border: 1px solid rgba(25, 26, 21, 0.1);
+    border-radius: 12px;
+    font-size: 16px;
+    padding: 16px 18px;
+    outline: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+font-weight: 400;
+font-size: 16px;
+line-height: 1.25;
+color: #191a15;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #3470ff;
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: #ff4444;
+}
+
+/* Кастомный select */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-wrapper select {
+  appearance: none;
+  padding-right: 50px;
+  width: 100%;
+  cursor: pointer;
   color: #191a15;
+  background-color: white;
+}
+
+.custom-select-wrapper select:invalid {
+  color: #999;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #666;
+  font-size: 12px;
+}
+
+/* Textarea - УБРАЛИ РАСТЯГИВАНИЕ */
+.form-textarea {
+  resize: none; /* Запрещаем растягивание */
+  min-height: 100px;
+  max-height: 200px; /* Максимальная высота */
+  overflow-y: auto; /* Скролл если нужно */
   line-height: 1.5;
 }
 
-.appointment-modal-footer {
+/* Сообщения об ошибках */
+.error-message {
+  font-size: 14px;
+  color: #ff4444;
+  margin-top: 2px;
+  padding-left: 4px;
+}
+
+/* Кнопка Send на всю ширину */
+.form-buttons {
   display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(25, 26, 21, 0.1);
+  margin-top: 16px;
 }
 
-.appointment-btn-secondary {
-  padding: 12px 24px;
-  border: 1px solid rgba(25, 26, 21, 0.2);
-  border-radius: 30px;
-  background-color: transparent;
-  color: #191a15;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.appointment-btn-secondary:hover {
-  background-color: rgba(25, 26, 21, 0.05);
-}
-
-.appointment-btn-primary {
-  padding: 12px 24px;
+.submit-btn-full {
+  width: 100%;
+  padding: 16px;
   border: 1px solid #3470ff;
   border-radius: 30px;
-  background-color: #3470ff;
-  color: #ffffff;
+  background: #3470ff;
+  color: white;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
 }
 
-.appointment-btn-primary:hover {
-  background-color: #255ee8;
+.submit-btn-full:hover {
+  background: #255ee8;
   border-color: #255ee8;
 }
 
-/* Анимации */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.submit-btn-full:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+@media screen and (min-width: 600px) {
+.modal-content {
+  padding: 64px;
 }
 
-/* Адаптивность */
-@media screen and (max-width: 768px) {
-  .appointment-modal-content {
-    padding: 32px;
-    width: 95%;
-  }
-  
-  .appointment-modal-title {
-    font-size: 32px;
-  }
+.form-row {
+ 
+  display: flex;
+  flex-direction: row;
+  gap-column: 16px
 }
-
-@media screen and (max-width: 480px) {
-  .appointment-modal-content {
-    padding: 24px;
-  }
-  
-  .appointment-modal-title {
-    font-size: 24px;
-  }
-  
-  .appointment-modal-footer {
-    flex-direction: column;
-  }
-  
-  .appointment-btn-secondary,
-  .appointment-btn-primary {
-    width: 100%;
-  }
 }

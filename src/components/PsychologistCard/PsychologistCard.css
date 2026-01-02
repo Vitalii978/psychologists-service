@@ -74,7 +74,7 @@
 .psychologist-title {
   font-size: 16px;
   font-weight: 500;
-  color: #3470ff;
+  color: #8a8a89;
   margin: 0;
 }
 
@@ -377,12 +377,13 @@
   margin-top: 64px;
 }
 
+/* Изменяем только кнопку Load More */
 .load-more-btn {
   padding: 14px 40px;
-  border: 1px solid rgba(25, 26, 21, 0.2);
+  border: 1px solid #3470ff;
   border-radius: 30px;
-  background-color: transparent;
-  color: #191a15;
+  background-color: #3470ff; /* Синий цвет */
+  color: #ffffff; /* Белый текст */
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
@@ -392,9 +393,8 @@
 }
 
 .load-more-btn:hover {
-  background-color: #3470ff;
-  color: #fbfbfb;
-  border-color: #3470ff;
+  background-color: #255ee8; /* Темнее синий при наведении */
+  border-color: #255ee8;
 }
 
 /* Адаптивность */
