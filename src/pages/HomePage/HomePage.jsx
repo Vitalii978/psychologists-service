@@ -1,13 +1,13 @@
 
-import Header from '../../components/Header/Header';
+// import Header from '../../components/Header/Header';
 import './HomePage.css';
 import svg from "../../assets/images/icons.svg";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {  
   return (
-    <div className="home-page">
-      {/* <Header /> */}
+    // <div className="home-page">
+      
       
       <main className="home-main">
           <div className="home-content">
@@ -60,7 +60,7 @@ const HomePage = () => {
             </div>            
           </div>
       </main>
-    </div>
+    // </div>
   );
 };
 
