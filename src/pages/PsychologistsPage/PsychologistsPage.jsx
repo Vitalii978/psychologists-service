@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './PsychologistsPage.css';
 import PsychologistCard from '../../components/PsychologistCard/PsychologistCard';
+import Filters from '../../components/Filters/Filters';
 
 const mockPsychologists = [
   {
@@ -73,15 +74,39 @@ const PsychologistsPage = () => {
   const [sortOption, setSortOption] = useState('show-all');
   const [visibleCount, setVisibleCount] = useState(3);
   const [psychologists, setPsychologists] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
       await new Promise(resolve => setTimeout(resolve, 100));
       setPsychologists(mockPsychologists);
+      
+      // Загружаем избранные из localStorage
+      const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      setFavorites(storedFavorites);
     };
     
     loadData();
   }, []);
+
+  // Функция для добавления/удаления из избранного
+  const handleFavoriteToggle = (psychologistId) => {
+    setFavorites(prevFavorites => {
+      let updatedFavorites;
+      
+      if (prevFavorites.includes(psychologistId)) {
+        // Удаляем из избранного
+        updatedFavorites = prevFavorites.filter(id => id !== psychologistId);
+      } else {
+        // Добавляем в избранное
+        updatedFavorites = [...prevFavorites, psychologistId];
+      }
+      
+      // Сохраняем в localStorage
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
+  };
 
   const sortPsychologists = (psychologistsList) => {
     const sorted = [...psychologistsList];
@@ -117,37 +142,19 @@ const PsychologistsPage = () => {
       <main className="psychologists-main">
         <div className="container">
           
-          {/* Фильтры */}
-          <div className="filters-section">
-            <div className="filters-label">Filters</div>
-            <div className="filter-select-wrapper">
-              <select 
-                className="filter-select"
-                value={sortOption}
-                onChange={(e) => setSortOption(e.target.value)}
-              >
-                <option value="show-all">Show all</option>
-                <option value="a-to-z">A to Z</option>
-                <option value="z-to-a">Z to A</option>
-                <option value="less-to-greater">Less to greater</option>
-                <option value="greater-to-less">Greater to less</option>
-                <option value="popular">Popular</option>
-                <option value="not-popular">Not popular</option>
-              </select>
-            </div>
-          </div>
+          <Filters sortOption={sortOption} setSortOption={setSortOption} />
           
-          {/* Сетка карточек */}
           <div className="psychologists-grid">
             {visiblePsychologists.map(psychologist => (
               <PsychologistCard 
                 key={psychologist.id}
                 psychologist={psychologist}
+                isFavorite={favorites.includes(psychologist.id)}
+                onFavoriteToggle={() => handleFavoriteToggle(psychologist.id)}
               />
             ))}
           </div>
           
-          {/* Кнопка Load More */}
           {visibleCount < psychologists.length && (
             <div className="load-more-container">
               <button 

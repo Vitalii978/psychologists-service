@@ -15,79 +15,6 @@
   margin: 0 auto;
 }
 
-/* Фильтры */
-.filters-section {
-  margin-bottom: 48px;
-  width: 226px; /* Ширина 226px с левой стороны */
-}
-
-.filters-label {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.28571;
-  color: #8a8a89;
-  margin-bottom: 8px;
-}
-
-/* Обертка для select */
-.filter-select-wrapper {
-  position: relative;
-}
-
-/* Стрелка в фильтре должна быть белой */
-.filter-select-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 18px;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); /* Белая стрелка */
-  background-repeat: no-repeat;
-  background-position: center;
-  pointer-events: none;
-}
-
-.filter-select {
-  width: 100%;
-  padding: 14px 18px;
-  padding-right: 40px;
-  border: 1px solid #3470ff; /* Синяя граница */
-  border-radius: 14px;
-  background-color: #3470ff; /* Синий фон */
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #ffffff; /* Белый текст */
-  cursor: pointer;
-  outline: none;
-  appearance: none;
-  transition: all 0.3s ease;
-}
-
-.filter-select:hover {
-  border-color: #3470ff;
-}
-
-.filter-select:focus {
-  border-color: #3470ff;
-}
-
-/* Опции в выпадающем списке */
-.filter-select option {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25;
-  color: rgba(25, 26, 21, 0.3);
-  padding: 12px;
-  background-color: #ffffff;
-}
-
-.filter-select option:checked {
-  color: #191a15; /* Активная категория */
-}
-
 /* Сетка карточек - ОДИН СТОЛБЕЦ */
 .psychologists-grid {
   display: flex;
@@ -106,10 +33,10 @@
 /* Кнопка Load more - СИНЯЯ с БЕЛЫМ текстом */
 .load-more-btn {
   padding: 14px 40px;
-  border: 1px solid #3470ff; /* Синяя рамка */
+  border: 1px solid #3470ff;
   border-radius: 30px;
-  background-color: #3470ff; /* Синий фон */
-  color: #ffffff; /* Белый текст */
+  background-color: #3470ff;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
@@ -119,14 +46,14 @@
 }
 
 .load-more-btn:hover {
-  background-color: #255ee8; /* Темнее синий при наведении */
-  border-color: #255ee8; /* Темнее синяя рамка при наведении */
-  transform: translateY(-2px); /* Легкий подъем при наведении */
-  box-shadow: 0 6px 20px rgba(52, 112, 255, 0.3); /* Тень при наведении */
+  background-color: #255ee8;
+  border-color: #255ee8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 112, 255, 0.3);
 }
 
 .load-more-btn:active {
-  transform: translateY(0); /* Возврат при нажатии */
+  transform: translateY(0);
 }
 
 /* Адаптивность */
@@ -139,10 +66,6 @@
 @media screen and (max-width: 768px) {
   .psychologists-main {
     padding: 32px 16px;
-  }
-  
-  .filters-section {
-    width: 100%;
   }
   
   .load-more-btn {

@@ -3,13 +3,23 @@ import './PsychologistCard.css';
 import svg from '../../assets/images/icons.svg';
 import AppointmentModal from '../AppointmentModal/AppointmentModal';
 
-const PsychologistCard = ({ psychologist }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const PsychologistCard = ({ 
+  psychologist, 
+  isFavorite = false, 
+  onRemoveFavorite = null,
+  onFavoriteToggle = null 
+}) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
 
   const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
+    if (onRemoveFavorite) {
+      // На странице Favorites: удаляем карточку
+      onRemoveFavorite(psychologist.id);
+    } else if (onFavoriteToggle) {
+      // На странице Psychologists: переключаем состояние
+      onFavoriteToggle();
+    }
   };
 
   const handleReadMore = () => {
@@ -27,7 +37,6 @@ const PsychologistCard = ({ psychologist }) => {
   return (
     <>
       <div className="psychologist-card">
-        {/* Левая часть с фото */}
         <div className="card-left">
           <div className="psychologist-avatar">
             {psychologist.avatar_url ? (
@@ -46,9 +55,7 @@ const PsychologistCard = ({ psychologist }) => {
           </div>
         </div>
         
-        {/* Правая часть с информацией */}
         <div className="card-right">
-          {/* Верхняя строка: заголовок и кнопки */}
           <div className="card-top-row">
             <div className="title-section">
               <div className="psychologist-title">Psychologist</div>
@@ -57,15 +64,21 @@ const PsychologistCard = ({ psychologist }) => {
             
             <div className="rating-price-favorite">
               <div className="rating-price-container">
-                <div className="rating-block">
-                  <span className="rating-label">Rating:</span>
-                  <span className="rating-value">{psychologist.rating}</span>
-                  <span className="rating-separator">|</span>
-                </div>
-                <div className="price-block">
-                  <span className="price-label">Price / 1 hour:</span>
-                  <span className="price-value">{psychologist.price_per_hour}$</span>
-                </div>
+                 <div className="rating-block">
+                  {/* Добавляем иконку звездочки */}
+                   <svg className="star-icon">
+                     <use href={`${svg}#icon-star`} />
+                   </svg>
+                   
+                   <span className="rating-label">Rating:</span>
+                   <span className="rating-value">{psychologist.rating}</span>
+                   
+                   <span className="rating-separator">|</span>
+                 </div>
+                 <div className="price-block">
+                   <span className="price-label">Price / 1 hour:</span>
+                   <span className="price-value">{psychologist.price_per_hour}$</span>
+                 </div>
               </div>
               
               <button 
@@ -79,7 +92,6 @@ const PsychologistCard = ({ psychologist }) => {
             </div>
           </div>
           
-          {/* Информационные блоки в овальных формах */}
           <div className="info-blocks-container">
             <div className="info-block experience-block">
               <span className="info-label">Experience:</span>
@@ -102,7 +114,6 @@ const PsychologistCard = ({ psychologist }) => {
             </div>
           </div>
           
-          {/* Описание с кнопкой Read more слева */}
           <div className="description-section">
             <p className="about-text">
               {psychologist.about}
@@ -116,7 +127,6 @@ const PsychologistCard = ({ psychologist }) => {
             </button>
           </div>
           
-          {/* Детальная информация (отзывы и кнопка Make an appointment) */}
           {showDetails && (
             <div className="detailed-info">
               <div className="reviews-section">
@@ -143,7 +153,6 @@ const PsychologistCard = ({ psychologist }) => {
                 </div>
               </div>
               
-              {/* Кнопка Make an appointment вместе с отзывами */}
               <div className="appointment-section">
                 <button 
                   className="appointment-btn"
@@ -157,7 +166,6 @@ const PsychologistCard = ({ psychologist }) => {
         </div>
       </div>
 
-      {/* Модальное окно */}
       <AppointmentModal 
         isOpen={showAppointmentModal}
         onClose={handleCloseModal}

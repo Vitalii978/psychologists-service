@@ -454,3 +454,10 @@
     height: 100px;
   }
 }
+
+.star-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  fill: #ffc107; /* Золотой цвет для звезды */
+}

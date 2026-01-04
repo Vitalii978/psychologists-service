@@ -1,0 +1,79 @@
+/* Стили для компонента Filters */
+.filters-section {
+  margin-bottom: 48px;
+  width: 226px;
+}
+
+.filters-label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #8a8a89;
+  margin-bottom: 8px;
+}
+
+/* Обертка для select */
+.filter-select-wrapper {
+  position: relative;
+}
+
+/* Стрелка в фильтре */
+.filter-select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 14px 18px;
+  padding-right: 40px;
+  border: 1px solid #3470ff;
+  border-radius: 14px;
+  background-color: #3470ff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  transition: all 0.3s ease;
+}
+
+.filter-select:hover {
+  border-color: #3470ff;
+}
+
+.filter-select:focus {
+  border-color: #3470ff;
+}
+
+/* Опции в выпадающем списке */
+.filter-select option {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.3);
+  padding: 12px;
+  background-color: #ffffff;
+}
+
+.filter-select option:checked {
+  color: #191a15;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 768px) {
+  .filters-section {
+    width: 100%;
+  }
+}
