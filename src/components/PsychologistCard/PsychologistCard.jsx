@@ -1,3 +1,8 @@
+// ============================================
+// ФАЙЛ: src/components/PsychologistCard/PsychologistCard.jsx
+// ВЕРСИЯ: Возвращаем как было, только логика Firebase
+// ============================================
+
 import { useState } from 'react';
 import './PsychologistCard.css';
 import svg from '../../assets/images/icons.svg';
@@ -14,10 +19,10 @@ const PsychologistCard = ({
 
   const handleFavoriteClick = () => {
     if (onRemoveFavorite) {
-      // На странице Favorites: удаляем карточку
+      // На странице Favorites: удаляем карточку через Firebase
       onRemoveFavorite(psychologist.id);
     } else if (onFavoriteToggle) {
-      // На странице Psychologists: переключаем состояние
+      // На странице Psychologists: переключаем состояние через Firebase
       onFavoriteToggle();
     }
   };
@@ -65,7 +70,6 @@ const PsychologistCard = ({
             <div className="rating-price-favorite">
               <div className="rating-price-container">
                  <div className="rating-block">
-                  {/* Добавляем иконку звездочки */}
                    <svg className="star-icon">
                      <use href={`${svg}#icon-star`} />
                    </svg>
@@ -81,6 +85,7 @@ const PsychologistCard = ({
                  </div>
               </div>
               
+              {/* Кнопка сердечка - оставляем как было */}
               <button 
                 className={`favorite-btn ${isFavorite ? 'favorited' : ''}`}
                 onClick={handleFavoriteClick}

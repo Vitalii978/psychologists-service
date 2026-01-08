@@ -2,59 +2,9 @@ import { useState, useEffect } from 'react';
 import './FavoritesPage.css';
 import PsychologistCard from '../../components/PsychologistCard/PsychologistCard';
 import Filters from '../../components/Filters/Filters';
+import { getUserFavorites, removeFromFavorites } from '../../firebase/favorites';
 
-const mockFavorites = [
-  {
-    id: 1,
-    name: "Dr. Sarah Davis",
-    avatar_url: "",
-    experience: "12 years",
-    reviews: [
-      { reviewer: "Michael Brown", comment: "Dr. Davis has been a great help in managing my depression. Her insights have been valuable.", rating: 4.5 },
-      { reviewer: "Linda Johnson", comment: "I'm very satisfied with Dr. Davis's therapy. She's understanding and empathetic.", rating: 5 }
-    ],
-    price_per_hour: 120,
-    rating: 4.75,
-    license: "Licensed Psychologist (License #67890)",
-    specialization: "Depression and Mood Disorders",
-    initial_consultation: "Free 45-minute initial consultation",
-    about: "Dr. Sarah Davis is a highly experienced and licensed psychologist specializing in Depression and Mood Disorders. With 12 years of practice, she has helped numerous individuals overcome their depression and regain control of their lives. Dr. Davis is known for her empathetic and understanding approach to therapy, making her clients feel comfortable and supported throughout their journey to better mental health."
-  },
-  {
-    id: 3,
-    name: "Dr. Emily Wilson",
-    avatar_url: "",
-    experience: "10 years",
-    reviews: [
-      { reviewer: "John D.", comment: "Excellent family therapist.", rating: 4.9 },
-      { reviewer: "Maria S.", comment: "Great with relationship issues.", rating: 4.8 }
-    ],
-    price_per_hour: 110,
-    rating: 4.9,
-    license: "Licensed Psychologist (License #54321)",
-    specialization: "Family Therapy, Relationships",
-    initial_consultation: "Free 40-minute consultation",
-    about: "Family and relationship therapist with 10 years of experience."
-  },
-  {
-    id: 4,
-    name: "Dr. Robert Johnson",
-    avatar_url: "",
-    experience: "15 years",
-    reviews: [
-      { reviewer: "Tom B.", comment: "Very experienced therapist.", rating: 4.7 },
-      { reviewer: "Emma W.", comment: "Professional approach.", rating: 4.6 }
-    ],
-    price_per_hour: 130,
-    rating: 4.7,
-    license: "Licensed Psychologist (License #98765)",
-    specialization: "Trauma, PTSD",
-    initial_consultation: "Free 50-minute consultation",
-    about: "Specializes in trauma and PTSD therapy with 15 years of experience."
-  }
-];
-
-const FavoritesPage = () => {
+const FavoritesPage = ({ user }) => {
   const [sortOption, setSortOption] = useState('show-all');
   const [visibleCount, setVisibleCount] = useState(3);
   const [favorites, setFavorites] = useState([]);
@@ -62,40 +12,53 @@ const FavoritesPage = () => {
 
   useEffect(() => {
     const loadFavorites = async () => {
-      await new Promise(resolve => setTimeout(resolve, 300));
-      
-      // Загружаем избранных из localStorage
-      const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-      
-      if (storedFavorites.length > 0) {
-        // Фильтруем mockFavorites по ID из localStorage
-        const filteredFavorites = mockFavorites.filter(psych => 
-          storedFavorites.includes(psych.id)
-        );
-        setFavorites(filteredFavorites);
-      } else {
+      try {
+        setIsLoading(true);
+        
+        if (!user) {
+          setFavorites([]);
+          setIsLoading(false);
+          return;
+        }
+        
+        const result = await getUserFavorites(user.uid);
+        
+        if (result.success) {
+          setFavorites(result.favorites);
+        } else {
+          console.error('Error:', result.error);
+          setFavorites([]);
+        }
+        
+      } catch (error) {
+        console.error('Error:', error);
         setFavorites([]);
+      } finally {
+        setIsLoading(false);
       }
-      
-      setIsLoading(false);
     };
     
     loadFavorites();
-  }, []);
+  }, [user]);
 
-  // Функция для удаления психолога из избранного
-  const handleRemoveFavorite = (psychologistId) => {
-    // 1. Обновляем состояние
-    setFavorites(prevFavorites => 
-      prevFavorites.filter(psych => psych.id !== psychologistId)
-    );
+  // Функция удаления из избранного
+  const handleRemoveFavorite = async (psychologistId) => {
+    if (!user) return;
     
-    // 2. Обновляем localStorage
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const updatedFavorites = storedFavorites.filter(id => id !== psychologistId);
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    try {
+      const result = await removeFromFavorites(user.uid, psychologistId);
+      
+      if (result.success) {
+        setFavorites(prev => 
+          prev.filter(psych => psych.id !== psychologistId)
+        );
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
+  // Функция сортировки
   const sortFavorites = (favoritesList) => {
     const sorted = [...favoritesList];
     
@@ -112,7 +75,6 @@ const FavoritesPage = () => {
         return sorted.sort((a, b) => b.rating - a.rating);
       case 'not-popular':
         return sorted.sort((a, b) => a.rating - b.rating);
-      case 'show-all':
       default:
         return sorted;
     }
@@ -131,19 +93,15 @@ const FavoritesPage = () => {
       <main className="favorites-main">
         <div className="container">
           
-          {/* Используем тот же компонент Filters */}
           <Filters sortOption={sortOption} setSortOption={setSortOption} />
           
-          {/* Пока идет загрузка - показываем спиннер/сообщение */}
           {isLoading ? (
             <div className="loading-container">
               <div className="loading-spinner"></div>
               <p className="loading-text">Loading your favorites...</p>
             </div>
           ) : (
-            // Если загрузка завершена, проверяем: есть ли избранные?
             isEmpty ? (
-              // Если список пустой - показываем сообщение
               <div className="empty-favorites">
                 <div className="empty-icon">❤️</div>
                 <h2 className="empty-title">No favorites yet</h2>
@@ -151,7 +109,6 @@ const FavoritesPage = () => {
                   You haven't added any psychologists to your favorites list.
                   Browse psychologists and click the heart icon to add them here.
                 </p>
-                {/* Кнопка для перехода к психологам */}
                 <button 
                   className="browse-btn"
                   onClick={() => window.location.href = '/psychologists'}
@@ -160,20 +117,18 @@ const FavoritesPage = () => {
                 </button>
               </div>
             ) : (
-              // Если есть избранные - показываем список
               <>
                 <div className="favorites-grid">
                   {visibleFavorites.map(psychologist => (
                     <PsychologistCard 
                       key={psychologist.id}
                       psychologist={psychologist}
-                      isFavorite={true} // Всегда красное сердечко на странице избранного
-                      onRemoveFavorite={handleRemoveFavorite} // Функция для удаления
+                      isFavorite={true}
+                      onRemoveFavorite={() => handleRemoveFavorite(psychologist.id)}
                     />
                   ))}
                 </div>
                 
-                {/* Кнопка Load More если есть еще карточки */}
                 {visibleCount < favorites.length && (
                   <div className="load-more-container">
                     <button 
