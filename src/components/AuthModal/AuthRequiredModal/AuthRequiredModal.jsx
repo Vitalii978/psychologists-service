@@ -25,7 +25,7 @@ const AuthRequiredModal = ({ isOpen, onClose }) => {
   return (
     <div className="modal-backdrop" onClick={handleBackdropClick}>
       <div className="modal-content auth-required-modal">
-        {/* Крестик как декоративный элемент */}
+        {/* Декоративный крестик */}
         <div className="decorative-close">
           <svg width="24" height="24">
             <use href={`${svg}#icon-close`}></use>

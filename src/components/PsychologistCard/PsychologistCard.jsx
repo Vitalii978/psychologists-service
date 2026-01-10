@@ -1,8 +1,3 @@
-// ============================================
-// ФАЙЛ: src/components/PsychologistCard/PsychologistCard.jsx
-// ВЕРСИЯ: Возвращаем как было, только логика Firebase
-// ============================================
-
 import { useState } from 'react';
 import './PsychologistCard.css';
 import svg from '../../assets/images/icons.svg';
@@ -12,17 +7,17 @@ const PsychologistCard = ({
   psychologist, 
   isFavorite = false, 
   onRemoveFavorite = null,
-  onFavoriteToggle = null 
+  onFavoriteToggle = null,
+  user = null,
+  onOpenAuthRequired = null // ДОБАВЛЯЕМ ЭТОТ ПРОПС
 }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
 
   const handleFavoriteClick = () => {
     if (onRemoveFavorite) {
-      // На странице Favorites: удаляем карточку через Firebase
       onRemoveFavorite(psychologist.id);
     } else if (onFavoriteToggle) {
-      // На странице Psychologists: переключаем состояние через Firebase
       onFavoriteToggle();
     }
   };
@@ -32,6 +27,15 @@ const PsychologistCard = ({
   };
 
   const handleAppointmentClick = () => {
+    // ПРОВЕРЯЕМ АВТОРИЗАЦИЮ
+    if (!user) {
+      if (onOpenAuthRequired) {
+        onOpenAuthRequired(); // Открываем модалку с сообщением
+      }
+      return; // Не открываем форму записи
+    }
+    
+    // Если пользователь авторизован - открываем форму
     setShowAppointmentModal(true);
   };
 
@@ -73,10 +77,8 @@ const PsychologistCard = ({
                    <svg className="star-icon">
                      <use href={`${svg}#icon-star`} />
                    </svg>
-                   
                    <span className="rating-label">Rating:</span>
                    <span className="rating-value">{psychologist.rating}</span>
-                   
                    <span className="rating-separator">|</span>
                  </div>
                  <div className="price-block">
@@ -85,7 +87,6 @@ const PsychologistCard = ({
                  </div>
               </div>
               
-              {/* Кнопка сердечка - оставляем как было */}
               <button 
                 className={`favorite-btn ${isFavorite ? 'favorited' : ''}`}
                 onClick={handleFavoriteClick}
@@ -136,23 +137,23 @@ const PsychologistCard = ({
             <div className="detailed-info">
               <div className="reviews-section">
                 <div className="reviews-list">
-                  {psychologist.reviews.map((review, index) => (
+                  {psychologist.reviews && psychologist.reviews.map((review, index) => (
                     <div key={index} className="review-item">
                       <div className="reviewer-header">
                         <div className="reviewer-avatar">
-                          {review.reviewer.charAt(0)}
+                          {review.reviewer?.charAt(0) || 'U'}
                         </div>
                         <div className="reviewer-info">
-                          <span className="reviewer-name">{review.reviewer}</span>
+                          <span className="reviewer-name">{review.reviewer || 'Unknown'}</span>
                           <div className="review-rating">
-                            <span className="rating-number">{review.rating}</span>
+                            <span className="rating-number">{review.rating || '0'}</span>
                             <svg>
                               <use href={`${svg}#icon-star`} />
                             </svg>
                           </div>
                         </div>
                       </div>
-                      <p className="review-comment">{review.comment}</p>
+                      <p className="review-comment">{review.comment || 'No comment'}</p>
                     </div>
                   ))}
                 </div>
@@ -161,7 +162,7 @@ const PsychologistCard = ({
               <div className="appointment-section">
                 <button 
                   className="appointment-btn"
-                  onClick={handleAppointmentClick}
+                  onClick={handleAppointmentClick} // ИЗМЕНЕН ОБРАБОТЧИК
                 >
                   Make an appointment
                 </button>
@@ -171,11 +172,15 @@ const PsychologistCard = ({
         </div>
       </div>
 
-      <AppointmentModal 
-        isOpen={showAppointmentModal}
-        onClose={handleCloseModal}
-        psychologist={psychologist}
-      />
+      {/* Модалка записи открывается ТОЛЬКО для авторизованных */}
+      {user && (
+        <AppointmentModal 
+          isOpen={showAppointmentModal}
+          onClose={handleCloseModal}
+          psychologist={psychologist}
+          user={user}
+        />
+      )}
     </>
   );
 };

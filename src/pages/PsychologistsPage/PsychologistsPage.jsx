@@ -119,12 +119,7 @@ const PsychologistsPage = ({ user, onOpenAuthRequired }) => {
           <Filters sortOption={sortOption} setSortOption={setSortOption} />
           
           {isLoading ? (
-            <div style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center',
-              padding: '50px 0'
-            }}>
+            <div className="loading-container">
               <div className="loading-spinner"></div>
               <p>Loading psychologists...</p>
             </div>
@@ -137,6 +132,8 @@ const PsychologistsPage = ({ user, onOpenAuthRequired }) => {
                     psychologist={psychologist}
                     isFavorite={favoritesStatus[psychologist.id] || false}
                     onFavoriteToggle={() => handleFavoriteToggle(psychologist.id, psychologist)}
+                    user={user}
+                    onOpenAuthRequired={onOpenAuthRequired} // ПЕРЕДАЕМ ФУНКЦИЮ
                   />
                 ))}
               </div>

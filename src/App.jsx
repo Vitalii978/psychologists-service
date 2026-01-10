@@ -63,7 +63,12 @@ function App() {
         <Route 
           path="/favorites" 
           element={
-            user ? <FavoritesPage user={user} /> : <Navigate to="/" />
+            user ? 
+              <FavoritesPage 
+                user={user}
+                onOpenAuthRequired={() => setShowAuthRequiredModal(true)}
+              /> 
+              : <Navigate to="/" />
           } 
         />
         <Route path="*" element={<HomePage />} />

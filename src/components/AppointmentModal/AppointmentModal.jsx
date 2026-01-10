@@ -1,111 +1,124 @@
-// Импортируем необходимые хуки и библиотеки
-import { useEffect, useCallback } from 'react';
-import { useForm, Controller } from 'react-hook-form'; // Добавили Controller
+// ============================================
+// ФАЙЛ: src/components/AppointmentModal/AppointmentModal.jsx
+// ОБНОВЛЕННАЯ ВЕРСИЯ С СОХРАНЕНИЕМ В FIREBASE
+// ============================================
+
+import { useEffect, useState, useCallback } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import './AppointmentModal.css';
 import svg from '../../assets/images/icons.svg';
-import TimeSelect from './TimeSelect'; // Импортируем наш компонент выбора времени
+import TimeSelect from './TimeSelect';
+import { saveAppointment } from '../../firebase/appointments';
 
-// Схема валидации с помощью Yup
+// Схема валидации
 const appointmentSchema = yup.object({
-  // Поле "Name" - обязательное, минимум 2 символа
-  name: yup
-    .string()
-    .required('Name is required')
-    .min(2, 'Name must be at least 2 characters'),
-    
-  // Поле "Email" - обязательное, должен быть валидный email
-  email: yup
-    .string()
-    .required('Email is required')
-    .email('Please enter a valid email'),
-    
-  // Поле "Phone" - обязательное, должен начинаться с +380 и иметь 9 цифр после
-  phone: yup
-    .string()
-    .required('Phone number is required')
-    .matches(/^\+380\d{9}$/, 'Phone number must start with +380 and have 9 digits after'),
-  
-  // Поле "Meeting time" - обязательное, формат ЧЧ:ММ
-  meetingTime: yup
-    .string()
-    .required('Meeting time is required')
-    .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Please enter a valid time (HH:MM)'),
-    
-  // Поле "Comment" - обязательное, минимум 10 символов
-  comment: yup
-    .string()
-    .required('Comment is required')
-    .min(10, 'Comment must be at least 10 characters'),
+  name: yup.string().required('Name is required').min(2, 'Name must be at least 2 characters'),
+  email: yup.string().required('Email is required').email('Please enter a valid email'),
+  phone: yup.string().required('Phone number is required').matches(/^\+380\d{9}$/, 'Phone number must start with +380 and have 9 digits after'),
+  meetingTime: yup.string().required('Meeting time is required').matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Please enter a valid time (HH:MM)'),
+  comment: yup.string().required('Comment is required').min(10, 'Comment must be at least 10 characters'),
 });
 
-const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
-  // Используем хук useForm для управления формой
+const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  
   const {
-    register,           // Функция для регистрации полей ввода
-    handleSubmit,       // Функция для обработки отправки формы
-    control,            // Контроллер для управления кастомными полями (добавили)
-    setValue,           // Функция для установки значений полей (добавили)
-    formState: { errors }, // Объект с ошибками валидации
-    reset,              // Функция для сброса формы
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+    reset,
   } = useForm({
-    // Подключаем схему валидации Yup
     resolver: yupResolver(appointmentSchema),
-    // Начальные значения полей
     defaultValues: {
       name: '',
       email: '',
-      phone: '+380',      // Начинается с +380
-      meetingTime: '00:00', // По умолчанию 00:00
+      phone: '+380',
+      meetingTime: '09:00',
       comment: '',
     }
   });
 
-  // Мемоизируем функцию закрытия с useCallback
+  // Функция закрытия с очисткой состояний
   const handleClose = useCallback(() => {
     onClose();
     reset();
+    setSubmitError('');
+    setSubmitSuccess(false);
   }, [onClose, reset]);
 
-  // Функция отправки формы
-  const onSubmit = (data) => {
-    console.log('Form data:', data);
-    console.log('Psychologist:', psychologist?.name);
+  // Функция отправки формы с сохранением в Firebase
+  const onSubmit = async (data) => {
+    if (!psychologist) {
+      setSubmitError('Psychologist information is missing');
+      return;
+    }
     
-    // Здесь будет отправка на сервер
-    handleClose();
+    setIsLoading(true);
+    setSubmitError('');
+    setSubmitSuccess(false);
+    
+    try {
+      const result = await saveAppointment(
+        data,
+        psychologist.id,
+        user?.uid
+      );
+      
+      if (result.success) {
+        setSubmitSuccess(true);
+        
+        setTimeout(() => {
+          handleClose();
+        }, 2000);
+      } else {
+        setSubmitError(result.error || 'Failed to save appointment');
+      }
+    } catch (error) {
+      setSubmitError('An unexpected error occurred');
+      console.error('Appointment submission error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  // Эффект для обработки клавиши Escape
+  // Обработчик Escape
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.keyCode === 27 && isOpen) {
+      if (event.key === 'Escape' && isOpen) {
         handleClose();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, handleClose]);
 
-  // Если окно не открыто - не рендерим ничего
+  // Закрытие по клику на backdrop
+  const handleBackdropClick = useCallback((e) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  }, [handleClose]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="modal-backdrop" onClick={handleClose}>
+    <div className="modal-backdrop" onClick={handleBackdropClick}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         
         {/* Заголовок с кнопкой закрытия */}
         <div className="modal-header">
           <h2 className="modal-title">
-            Make an appointment with a psychologists
+            Make an appointment with a psychologist
           </h2>
-          
-          {/* Кнопка закрытия с SVG иконкой */}
           <button className="close-btn" onClick={handleClose}>
             <svg>
               <use href={`${svg}#icon-close`}></use>
@@ -113,16 +126,15 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
           </button>
         </div>
         
-        {/* Описание под заголовком */}
+        {/* Описание */}
         <div className="modal-description">
           <p className="description-text">
             You are on the verge of changing your life for the better. Fill out the short form below to book your personal appointment with a professional psychologist. We guarantee confidentiality and respect for your privacy.
           </p>
         </div>
         
-        {/* Информация о психологе с фото */}
+        {/* Информация о психологе */}
         <div className="psychologist-info-with-photo">
-          {/* Фото психолога */}
           <div className="psychologist-photo">
             {psychologist?.avatar_url ? (
               <img 
@@ -138,19 +150,28 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               </div>
             )}
           </div>
-          
-          {/* Имя психолога */}
           <div className="psychologist-details">
-            <p className="psychologist-title">
-              Your psychologist
-            </p>
+            <p className="psychologist-title">Your psychologist</p>
             <p className="psychologist-name-label">
-              {psychologist?.name || 'Dr. Sarah Davis'}
+              {psychologist?.name || 'Psychologist'}
             </p>
           </div>
         </div>
         
-        {/* Форма для записи */}
+        {/* Сообщения об ошибке и успехе */}
+        {submitError && (
+          <div className="form-error-message">
+            {submitError}
+          </div>
+        )}
+        
+        {submitSuccess && (
+          <div className="form-success-message">
+            ✅ Appointment request sent successfully! The window will close automatically.
+          </div>
+        )}
+        
+        {/* Форма */}
         <form className="appointment-form" onSubmit={handleSubmit(onSubmit)}>
           
           {/* Поле Name */}
@@ -161,6 +182,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               className={`form-input ${errors.name ? 'error' : ''}`}
               {...register('name')}
               placeholder="Name"
+              disabled={isLoading || submitSuccess}
             />
             {errors.name && (
               <span className="error-message">{errors.name.message}</span>
@@ -175,15 +197,15 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               className={`form-input ${errors.email ? 'error' : ''}`}
               {...register('email')}
               placeholder="Email"
+              disabled={isLoading || submitSuccess}
             />
             {errors.email && (
               <span className="error-message">{errors.email.message}</span>
             )}
           </div>
           
-          {/* Поля Phone и Meeting Time в одной строке */}
+          {/* Поля Phone и Meeting Time */}
           <div className="form-row">
-            {/* Поле Phone с Controller для кастомной логики */}
             <div className="form-group form-group-half">
               <Controller
                 name="phone"
@@ -197,7 +219,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
                     value={field.value}
                     onChange={(e) => {
                       const value = e.target.value;
-                      // Разрешаем только +380 в начале
                       if (value.startsWith('+380')) {
                         field.onChange(value);
                       } else {
@@ -205,6 +226,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
                       }
                     }}
                     placeholder="+380"
+                    disabled={isLoading || submitSuccess}
                   />
                 )}
               />
@@ -213,14 +235,17 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               )}
             </div>
             
-            {/* Поле Meeting Time с кастомным TimeSelect компонентом */}
             <div className="form-group form-group-half">
               <Controller
                 name="meetingTime"
                 control={control}
-                defaultValue="00:00"
+                defaultValue="09:00"
                 render={({ field }) => (
-                  <TimeSelect field={field} form={{ setValue }} />
+                  <TimeSelect 
+                    field={field} 
+                    form={{ setValue }}
+                    disabled={isLoading || submitSuccess}
+                  />
                 )}
               />
               {errors.meetingTime && (
@@ -237,19 +262,21 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               {...register('comment')}
               placeholder="Comment"
               rows="4"
+              disabled={isLoading || submitSuccess}
             />
             {errors.comment && (
               <span className="error-message">{errors.comment.message}</span>
             )}
           </div>
           
-          {/* Кнопка Send на всю ширину */}
+          {/* Кнопка Send */}
           <div className="form-buttons">
             <button
               type="submit"
               className="submit-btn-full"
+              disabled={isLoading || submitSuccess}
             >
-              Send
+              {isLoading ? 'Sending...' : submitSuccess ? 'Sent!' : 'Send'}
             </button>
           </div>
         </form>

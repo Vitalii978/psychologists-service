@@ -4,7 +4,7 @@ import PsychologistCard from '../../components/PsychologistCard/PsychologistCard
 import Filters from '../../components/Filters/Filters';
 import { getUserFavorites, removeFromFavorites } from '../../firebase/favorites';
 
-const FavoritesPage = ({ user }) => {
+const FavoritesPage = ({ user, onOpenAuthRequired }) => { // ДОБАВЛЯЕМ onOpenAuthRequired
   const [sortOption, setSortOption] = useState('show-all');
   const [visibleCount, setVisibleCount] = useState(3);
   const [favorites, setFavorites] = useState([]);
@@ -41,7 +41,6 @@ const FavoritesPage = ({ user }) => {
     loadFavorites();
   }, [user]);
 
-  // Функция удаления из избранного
   const handleRemoveFavorite = async (psychologistId) => {
     if (!user) return;
     
@@ -58,7 +57,6 @@ const FavoritesPage = ({ user }) => {
     }
   };
 
-  // Функция сортировки
   const sortFavorites = (favoritesList) => {
     const sorted = [...favoritesList];
     
@@ -125,6 +123,8 @@ const FavoritesPage = ({ user }) => {
                       psychologist={psychologist}
                       isFavorite={true}
                       onRemoveFavorite={() => handleRemoveFavorite(psychologist.id)}
+                      user={user}
+                      onOpenAuthRequired={onOpenAuthRequired} // ПЕРЕДАЕМ ФУНКЦИЮ
                     />
                   ))}
                 </div>
