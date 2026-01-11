@@ -5,6 +5,7 @@
   background-color: #fbfbfb;
   width: 100%;
   overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+      background: linear-gradient(to left top, #3470ff, rgba(25, 26, 21, 0) 50%);
 
 }
 

@@ -97,7 +97,7 @@
 
 /* Кнопка для перехода к психологам */
 .browse-btn {
-  padding: 16px 40px;
+  padding: 16px 48px;
   border: 1px solid #3470ff;
   border-radius: 30px;
   background-color: #3470ff;
@@ -107,7 +107,7 @@
   line-height: 1.25;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 200px;
+  max-width: 176px;
 }
 
 .browse-btn:hover {
@@ -126,7 +126,7 @@
 
 /* Кнопка Load More */
 .load-more-btn {
-  padding: 14px 40px;
+  padding: 14px 48px;
   border: 1px solid #3470ff;
   border-radius: 30px;
   background-color: #3470ff;
@@ -136,7 +136,7 @@
   line-height: 1.25;
   transition: all 0.3s ease;
   cursor: pointer;
-  min-width: 160px;
+  max-width: 176px;
 }
 
 .load-more-btn:hover {
@@ -175,7 +175,7 @@
   .browse-btn,
   .load-more-btn {
     width: 100%;
-    max-width: 300px;
+    max-width: 176px;
   }
 }
 

@@ -1,7 +1,8 @@
 /* Стили для компонента Filters */
 .filters-section {
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   width: 226px;
+  
 }
 
 .filters-label {
@@ -15,6 +16,7 @@
 /* Обертка для select */
 .filter-select-wrapper {
   position: relative;
+  
 }
 
 /* Стрелка в фильтре */
@@ -34,6 +36,7 @@
 
 .filter-select {
   width: 100%;
+  height:48px;
   padding: 14px 18px;
   padding-right: 40px;
   border: 1px solid #3470ff;
@@ -71,9 +74,9 @@
   color: #191a15;
 }
 
-/* Адаптивность */
+Адаптивность
 @media screen and (max-width: 768px) {
   .filters-section {
-    width: 100%;
+    /* width: 100%; */
   }
 }
