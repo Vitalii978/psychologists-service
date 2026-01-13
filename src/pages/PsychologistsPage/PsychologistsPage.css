@@ -23,7 +23,6 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  /* margin-bottom: 64px; */
 }
 
 /* Контейнер для кнопки Load More */
@@ -74,8 +73,81 @@
   }
   .load-more-btn {
   /* display: none; */
-  max-width: 176px !important;
+    max-width: 176px;
   }
 }
 
+/* Стили для якоря */
+.page-anchor {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
 
+/* Круглая кнопка "Наверх" */
+.back-to-top-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: rgba(52, 112, 255, 0.4);;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(84, 173, 255, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.back-to-top-button:hover {
+  background-color:  #255ee8;;
+  transform: translateY(-3px);
+    
+}
+
+.back-to-top-button:active {
+  transform: translateY(-1px);
+}
+
+.back-to-top-icon {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .back-to-top-button {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .back-to-top-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-to-top-button {
+    bottom: 16px;
+    right: 16px;
+    width: 46px;
+    height: 46px;
+  }
+  
+  .back-to-top-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

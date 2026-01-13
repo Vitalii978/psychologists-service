@@ -3,12 +3,36 @@ import './FavoritesPage.css';
 import PsychologistCard from '../../components/PsychologistCard/PsychologistCard';
 import Filters from '../../components/Filters/Filters';
 import { getUserFavorites, removeFromFavorites } from '../../firebase/favorites';
+import svg from '../../assets/images/icons.svg'; // ДОБАВИЛИ ИМПОРТ SVG
 
 const FavoritesPage = ({ user, onOpenAuthRequired }) => { // ДОБАВЛЯЕМ onOpenAuthRequired
   const [sortOption, setSortOption] = useState('show-all');
   const [visibleCount, setVisibleCount] = useState(3);
   const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // ДОБАВЛЯЕМ СОСТОЯНИЕ ДЛЯ КНОПКИ
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+    // ФУНКЦИЯ ДЛЯ ПРОВЕРКИ ПОЛОЖЕНИЯ СКРОЛЛА
+  useEffect(() => {
+    const checkScroll = () => {
+      // Если прокрутили больше 300px - показываем кнопку
+      if (window.scrollY > 300) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    // Слушаем событие прокрутки
+    window.addEventListener('scroll', checkScroll);
+    
+    // Проверяем сразу при загрузке
+    checkScroll();
+    
+    // Убираем слушатель при размонтировании
+    return () => window.removeEventListener('scroll', checkScroll);
+  }, []);
 
   useEffect(() => {
     const loadFavorites = async () => {
@@ -88,6 +112,8 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => { // ДОБАВЛЯЕМ 
 
   return (
     <div className="favorites-page">
+      {/* ДОБАВЛЯЕМ ЯКОРЬ В НАЧАЛО КОНТЕЙНЕРА */}
+              <a id="psychologists-top" className="page-anchor"></a>
       <main className="favorites-main">
         <div className="container">
           
@@ -145,6 +171,14 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => { // ДОБАВЛЯЕМ 
           
         </div>
       </main>
+       {/* КНОПКА "НАВЕРХ" - ПОКАЗЫВАЕМ ТОЛЬКО ЕСЛИ showBackToTop = true */}
+      {showBackToTop && (
+        <a href="#psychologists-top" className="back-to-top-button" aria-label="Back to top">
+          <svg className="back-to-top-icon">
+            <use href={`${svg}#icon-up`}></use>
+          </svg>
+        </a>
+      )}
     </div>
   );
 };

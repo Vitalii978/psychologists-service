@@ -41,17 +41,8 @@
   margin-bottom: 10px;
 }
 
-/* Описание под заголовком */
-/* .modal-description {
-  
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 18px;
-    color: rgba(25, 26, 21, 0.5);
-} */
 
 .description-text {
-  margin-top: 10px;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
@@ -92,6 +83,7 @@
   flex-direction: row;
   gap: 14px;
   margin-bottom: 40px;
+  margin-top: 10px;
 }
 
 .psychologist-photo {
@@ -261,7 +253,7 @@ color: #191a15;
 /* Кнопка Send на всю ширину */
 .form-buttons {
   display: flex;
-  margin-top: 24px;
+  margin-top: 5px;
 }
 
 .submit-btn-full {
@@ -296,19 +288,30 @@ color: #191a15;
 .modal-title {
   font-size: 40px;
   line-height: 48px;
+  margin-bottom: 20px;
 }
 
 .description-text {
   font-size: 16px;
   line-height: 20px;
+  /* margin-battom: 20px; */
+}
+
+.psychologist-info-with-photo {
+  margin-top: 40px;
 }
 
 .form-row {
- 
   display: flex;
   flex-direction: row;
   gap-column: 16px
 }
+
+.form-buttons {
+  display: flex;
+  margin-top: 24px;
+}
+
 }
 
 /* ДОБАВЛЯЕМ ЭТИ СТИЛИ В КОНЕЦ СУЩЕСТВУЮЩЕГО ФАЙЛА */

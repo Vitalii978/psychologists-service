@@ -55,3 +55,15 @@ button {
   display: flex;
   flex-direction: column;
 }
+
+/* Плавная прокрутка для якорных ссылок */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Настройки для плавной прокрутки */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
