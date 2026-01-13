@@ -146,10 +146,11 @@ const PsychologistCard = ({
                         <div className="reviewer-info">
                           <span className="reviewer-name">{review.reviewer || 'Unknown'}</span>
                           <div className="review-rating">
-                            <span className="rating-number">{review.rating || '0'}</span>
                             <svg>
                               <use href={`${svg}#icon-star`} />
                             </svg>
+                            <span className="rating-number">{review.rating || '0'}</span>
+                            
                           </div>
                         </div>
                       </div>

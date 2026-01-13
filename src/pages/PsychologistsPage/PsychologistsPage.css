@@ -2,12 +2,12 @@
 .psychologists-page {
   width: 100%;
   min-height: 100vh;
-  background-color: #fbfbfb;
+  background-color:  #f3f3f3;
 }
 
 
 .psychologists-main {
-  padding: 64px 128px;
+  padding: 64px 128px 100px 128px;
   max-width: 1440px;
   margin: 0 auto;
 }

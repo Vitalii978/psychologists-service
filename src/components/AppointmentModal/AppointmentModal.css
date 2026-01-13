@@ -96,9 +96,9 @@
 }
 
 .psychologist-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 15px;
+  width: 120px;
+  height: 120px;
+  border-radius: 30px;
   object-fit: cover;
 }
 
@@ -126,10 +126,10 @@
 
 /* Поменяли порядок: сначала "Your psychologist" */
 .psychologist-title {
-  color: rgba(25, 26, 21, 0.5);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 16px;
+  color: #8a8a89;
+  margin: 0;
 }
 
 /* Затем имя психолога */

@@ -1,14 +1,14 @@
 /* Карточка психолога - горизонтальный макет */
 .psychologist-card {
-  background-color: #ffffff;
+  background-color: #fbfbfb;;
   border-radius: 24px;
-  padding: 40px;
+  padding: 24px;
   box-shadow: 0 4px 28px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
   width: 100%;
-  /* margin-bottom: 32px; */
   display: flex;
   gap: 40px;
+  height: 100%;
 }
 
 .psychologist-card:hover {
@@ -22,33 +22,55 @@
 }
 
 .psychologist-avatar {
+  box-sizing: border-box;
   width: 120px;
   height: 120px;
   border-radius: 30px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.avatar-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.avatar-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #3470ff, #3E85F3);
+  border: 2px solid rgba(84, 190, 150, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; /* важно для абсолютного позиционирования */
 }
 
-.avatar-placeholder svg {
-  width: 60px;
-  height: 60px;
-  fill: #ffffff;
+.avatar-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 15px;
+  object-fit: cover;
+  display: block;
 }
+
+/* белая подложка */
+.psychologist-avatar::before {
+  content: "";
+  position: absolute;
+  top: 7.5px; /* отступ от верхнего края */
+  right: 7.5px; /* отступ от правого края */
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #FBFBFB; /* белая окантовка */
+  display: block;
+  z-index: 1;
+}
+
+/* зелёный кружок */
+.psychologist-avatar::after {
+  content: "";
+  position: absolute;
+  top: 10px; /* центрируем внутри белой подложки */
+  right: 10px; /* (14-9.5)/2 = 2.25 отступ для центрирования */
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #38cd3e; /* зелёный */
+  display: block;
+  z-index: 2;
+}
+
+
 
 /* Правая часть - информация */
 .card-right {
@@ -68,7 +90,7 @@
 .title-section {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .psychologist-title {
@@ -79,9 +101,9 @@
 }
 
 .psychologist-name {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 1.2;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
   color: #191a15;
   margin: 0;
 }
@@ -90,13 +112,13 @@
 .rating-price-favorite {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
 }
 
 .rating-price-container {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 .rating-block {
@@ -105,9 +127,12 @@
   gap: 8px;
 }
 
-.rating-label {
-  font-size: 16px;
-  color: rgba(25, 26, 21, 0.5);
+.rating-label,
+.rating-value{
+font-weight: 500;
+font-size: 16px;
+line-height: 1.5;
+color: #191a15;
 }
 
 .rating-value {
@@ -128,14 +153,16 @@
 }
 
 .price-label {
+  font-weight: 500;
   font-size: 16px;
-  color: rgba(25, 26, 21, 0.5);
+  line-height: 1.5;
+  color: #191a15;
 }
 
 .price-value {
   font-size: 16px;
   font-weight: 600;
-  color: #3470ff;
+  color: #38cd3e;
 }
 
 /* Кнопка сердца */
@@ -150,34 +177,32 @@
 }
 
 .favorite-btn svg {
-  width: 100%;
-  height: 100%;
-  stroke: rgba(25, 26, 21, 0.2);
-  stroke-width: 2.9424;
+  width: 24px;
+  height: 22px;
+  stroke: #191a15;
+  stroke-width: 2px;
   fill: transparent;
   transition: all 0.3s ease;
 }
 
-.favorite-btn:hover svg {
-  stroke: rgba(220, 20, 60, 0.6);
-}
 
 .favorite-btn.favorited svg {
-  stroke: #dc143c;
-  fill: #dc143c;
+  fill: #3470ff;
+  stroke-width: 2px;
+  stroke: #3470ff;
 }
 
 /* Информационные блоки в овальных формах */
 .info-blocks-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 8px;
+  gap: 8px;
+  /* margin-bottom: 8px; */
 }
 
 .info-block {
-  padding: 12px 18px;
-  background-color: #f8f9fa; /* Светло-серый тон */
+  padding: 8px 16px;
+  background-color:  #f3f3f3; 
   border-radius: 30px; /* Овальная форма */
   display: flex;
   align-items: center;
@@ -185,8 +210,10 @@
 }
 
 .info-label {
+  font-weight: 500;
   font-size: 16px;
-  color: rgba(25, 26, 21, 0.5);
+  line-height: 1.5;
+  color: #8a8a89;
   white-space: nowrap;
 }
 
@@ -194,31 +221,29 @@
   font-size: 16px;
   font-weight: 500;
   color: #191a15;
+
 }
 
-/* Описание */
-.description-section {
-  margin-bottom: 8px;
-}
 
 .about-text {
+  font-weight: 400;
   font-size: 16px;
-  line-height: 1.5;
-  color: rgba(25, 26, 21, 0.7);
-  margin: 0;
+  line-height: 1.3;
+  color: rgba(25, 26, 21, 0.5);
+  margin-bottom: 14px;
 }
 
 /* Отзывы с Read more */
-.reviews-section {
+/* .reviews-section {
   margin-bottom: 8px;
-}
+} */
 
-.reviews-header {
+/* .reviews-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-}
+} */
 
 .reviews-title {
   font-size: 20px;
@@ -233,12 +258,13 @@
   color: #3470ff;
   font-size: 16px;
   font-weight: 500;
-  cursor: pointer;
+  cursor
+/* }: pointer;
   padding: 0;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease; */
 }
 
 .reviews-read-more-btn:hover {
@@ -249,51 +275,55 @@
 .reviews-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 25px;
+  margin-bottom: 40px;
 }
 
-.review-item {
+/* .review-item {
   padding: 16px;
   background-color: #f8f9fa;
   border-radius: 15px;
-}
+} */
 
 .reviewer-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 18px;
 }
 
 .reviewer-avatar {
-  width: 32px;
-  height: 32px;
-  background-color: #3470ff;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(52, 112, 255, 0.2);
   color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  color: #3470ff;  
 }
 
 .reviewer-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .reviewer-name {
-  font-weight: 600;
-  color: #191a15;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #191a15
 }
 
 .review-rating {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .review-rating svg {
@@ -319,7 +349,6 @@
 .appointment-section {
   display: flex;
   justify-content: flex-start;
-  margin-top: 8px;
 }
 
 .appointment-btn {
@@ -342,7 +371,7 @@
 }
 
 .description-section {
-  margin-bottom: 8px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -351,17 +380,17 @@
 .read-more-btn {
   background: none;
   border: none;
-  color: #3470ff;
-  font-size: 16px;
-  font-weight: 500;
+  
+ 
   cursor: pointer;
-  padding: 8px 0 0 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: color 0.3s ease;
+  text-decoration-skip-ink: none;
+  color: #191a15;
   align-self: flex-start;
-  margin-top: 12px;
+  
 }
 
 .read-more-btn:hover {
@@ -405,6 +434,7 @@
     padding: 32px;
   }
   
+  
   .card-left {
     align-self: center;
   }
@@ -418,10 +448,6 @@
     width: 100%;
     justify-content: space-between;
   }
-  
-  .info-blocks-container {
-    flex-direction: column;
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -429,19 +455,16 @@
     padding: 24px;
   }
   
-  .psychologist-name {
+  /* .psychologist-name {
     font-size: 24px;
-  }
+  } */
   
   .rating-price-container {
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
   }
-  
-  .appointment-btn {
-    width: 100%;
-  }
+
 }
 
 @media screen and (max-width: 480px) {
