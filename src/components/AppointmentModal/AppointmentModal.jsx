@@ -112,14 +112,14 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
 
   return (
     <div className="modal-backdrop" onClick={handleBackdropClick}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content-appointment" onClick={(e) => e.stopPropagation()}>
         
         {/* Заголовок с кнопкой закрытия */}
-        <div className="modal-header">
+        <div className="modal-header-appointment">
           <h2 className="modal-title">
             Make an appointment with a psychologist
           </h2>
-          <button className="close-btn" onClick={handleClose}>
+          <button className="close-btn-appointment" onClick={handleClose}>
             <svg>
               <use href={`${svg}#icon-close`}></use>
             </svg>
@@ -140,7 +140,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
               <img 
                 src={psychologist.avatar_url} 
                 alt={psychologist.name}
-                className="psychologist-avatar"
+                className="psychologist-avatar-appointment"
               />
             ) : (
               <div className="psychologist-avatar-placeholder">
