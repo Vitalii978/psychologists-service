@@ -131,7 +131,6 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => { // ДОБАВЛЯЕМ 
                 <h2 className="empty-title">No favorites yet</h2>
                 <p className="empty-message">
                   You haven't added any psychologists to your favorites list.
-                  Browse psychologists and click the heart icon to add them here.
                 </p>
                 <button 
                   className="browse-btn"
