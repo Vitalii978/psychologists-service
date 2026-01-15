@@ -5,10 +5,10 @@ const Filters = ({ sortOption, setSortOption }) => {
     <div className="filters-section">
       <div className="filters-label">Filters</div>
       <div className="filter-select-wrapper">
-        <select 
+        <select
           className="filter-select"
           value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
+          onChange={e => setSortOption(e.target.value)}
         >
           <option value="show-all">Show all</option>
           <option value="a-to-z">A to Z</option>

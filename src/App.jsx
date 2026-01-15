@@ -22,15 +22,15 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthChange((currentUser) => {
+    const unsubscribe = onAuthChange(currentUser => {
       setUser(currentUser);
-      
+
       if (currentUser) {
         localStorage.setItem('psychologistUser', JSON.stringify(currentUser));
       } else {
         localStorage.removeItem('psychologistUser');
       }
-      
+
       setLoading(false);
     });
 
@@ -43,48 +43,50 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header 
+      <Header
         user={user}
         onOpenLogin={() => setShowLoginModal(true)}
         onOpenRegister={() => setShowRegisterModal(true)}
       />
-      
+
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route 
-          path="/psychologists" 
+        <Route
+          path="/psychologists"
           element={
-            <PsychologistsPage 
+            <PsychologistsPage
               user={user}
               onOpenAuthRequired={() => setShowAuthRequiredModal(true)}
             />
           }
         />
-        <Route 
-          path="/favorites" 
+        <Route
+          path="/favorites"
           element={
-            user ? 
-              <FavoritesPage 
+            user ? (
+              <FavoritesPage
                 user={user}
                 onOpenAuthRequired={() => setShowAuthRequiredModal(true)}
-              /> 
-              : <Navigate to="/" />
-          } 
+              />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
         <Route path="*" element={<HomePage />} />
       </Routes>
 
-      <LoginModal 
+      <LoginModal
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}
       />
-      
-      <RegisterModal 
+
+      <RegisterModal
         isOpen={showRegisterModal}
         onClose={() => setShowRegisterModal(false)}
       />
-      
-      <AuthRequiredModal 
+
+      <AuthRequiredModal
         isOpen={showAuthRequiredModal}
         onClose={() => setShowAuthRequiredModal(false)}
       />

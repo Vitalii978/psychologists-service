@@ -2,7 +2,6 @@
 .filters-section {
   margin-bottom: 32px;
   width: 226px;
-  
 }
 
 .filters-label {
@@ -16,12 +15,11 @@
 /* Обертка для select */
 .filter-select-wrapper {
   position: relative;
-  
 }
 
 /* Стрелка в фильтре */
 .filter-select-wrapper::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   right: 18px;
@@ -36,7 +34,7 @@
 
 .filter-select {
   width: 100%;
-  height:48px;
+  height: 48px;
   padding: 14px 18px;
   padding-right: 40px;
   border: 1px solid #3470ff;
@@ -74,8 +72,7 @@
   color: #191a15;
 }
 
-Адаптивность
-@media screen and (max-width: 768px) {
+Адаптивность @media screen and (max-width: 768px) {
   .filters-section {
     /* width: 100%; */
   }

@@ -2,9 +2,8 @@
 .psychologists-page {
   width: 100%;
   min-height: 100vh;
-  background-color:  #f3f3f3;
+  background-color: #f3f3f3;
 }
-
 
 .psychologists-main {
   padding: 64px 128px 100px 128px;
@@ -72,7 +71,7 @@
     padding: 48px 16px;
   }
   .load-more-btn {
-  /* display: none; */
+    /* display: none; */
     max-width: 176px;
   }
 }
@@ -95,7 +94,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: rgba(52, 112, 255, 0.4);;
+  background-color: rgba(52, 112, 255, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,9 +105,8 @@
 }
 
 .back-to-top-button:hover {
-  background-color:  #255ee8;;
+  background-color: #255ee8;
   transform: translateY(-3px);
-    
 }
 
 .back-to-top-button:active {
@@ -131,7 +129,7 @@
     width: 50px;
     height: 50px;
   }
-  
+
   .back-to-top-icon {
     width: 22px;
     height: 22px;
@@ -145,7 +143,7 @@
     width: 46px;
     height: 46px;
   }
-  
+
   .back-to-top-icon {
     width: 20px;
     height: 20px;

@@ -8,9 +8,18 @@ import svg from '../../../assets/images/icons.svg';
 
 // Схема валидации
 const schema = yup.object({
-  name: yup.string().required('Name is required').min(2, 'Minimum 2 characters'),
-  email: yup.string().required('Email is required').email('Invalid email format'),
-  password: yup.string().required('Password is required').min(6, 'Minimum 6 characters'),
+  name: yup
+    .string()
+    .required('Name is required')
+    .min(2, 'Minimum 2 characters'),
+  email: yup
+    .string()
+    .required('Email is required')
+    .email('Invalid email format'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(6, 'Minimum 6 characters'),
 });
 
 function RegisterModal({ isOpen, onClose }) {
@@ -20,11 +29,11 @@ function RegisterModal({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false); // Показать/скрыть пароль
 
   // Настройка react-hook-form
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { errors }, 
-    reset 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -38,14 +47,14 @@ function RegisterModal({ isOpen, onClose }) {
   }, [onClose, reset]);
 
   // Обработка отправки формы
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     setError(''); // Очищаем предыдущие ошибки
     setLoading(true); // Включаем загрузку
-    
+
     try {
       // Вызываем функцию регистрации из auth.js
       const result = await registerUser(data.email, data.password, data.name);
-      
+
       if (result.success) {
         // Успешная регистрация - закрываем модалку
         handleClose();
@@ -63,7 +72,7 @@ function RegisterModal({ isOpen, onClose }) {
   };
 
   // Закрытие по клику на фон
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       handleClose();
     }
@@ -71,12 +80,12 @@ function RegisterModal({ isOpen, onClose }) {
 
   // Закрытие по клавише Escape
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = e => {
       if (e.key === 'Escape' && isOpen) {
         handleClose();
       }
     };
-    
+
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, handleClose]);
@@ -88,30 +97,27 @@ function RegisterModal({ isOpen, onClose }) {
       <div className="modal-content">
         <div className="modal-header">
           <h2>Registration</h2>
-        </div>  
-        
+        </div>
+
         {/* Кнопка закрытия модалки */}
         <button className="close-btn" onClick={handleClose}>
           <svg>
             <use href={`${svg}#icon-close`}></use>
           </svg>
         </button>
-        
+
         {/* Поясняющий текст */}
         <div className="modal-description">
           <p className="description-text">
-            Thank you for your interest in our platform! In order to register, 
-            we need some information. Please provide us with the following information.
+            Thank you for your interest in our platform! In order to register,
+            we need some information. Please provide us with the following
+            information.
           </p>
         </div>
-        
+
         {/* Сообщение об ошибке от Firebase */}
-        {error && (
-          <div className="auth-error">
-            {error}
-          </div>
-        )}
-        
+        {error && <div className="auth-error">{error}</div>}
+
         {/* Форма регистрации */}
         <form className="form-group" onSubmit={handleSubmit(onSubmit)}>
           {/* Поле Name */}
@@ -127,7 +133,7 @@ function RegisterModal({ isOpen, onClose }) {
               <span className="error">{errors.name.message}</span>
             )}
           </div>
-          
+
           {/* Поле Email */}
           <div className="input-group">
             <input
@@ -141,7 +147,7 @@ function RegisterModal({ isOpen, onClose }) {
               <span className="error">{errors.email.message}</span>
             )}
           </div>
-          
+
           {/* Поле Password с кнопкой показа/скрытия */}
           <div className="input-group password-group">
             <input
@@ -151,7 +157,7 @@ function RegisterModal({ isOpen, onClose }) {
               {...register('password')}
               disabled={loading}
             />
-            <button 
+            <button
               type="button"
               className="toggle-password-btn"
               onClick={() => setShowPassword(!showPassword)}
@@ -159,20 +165,20 @@ function RegisterModal({ isOpen, onClose }) {
               disabled={loading}
             >
               <svg className="toggle-password-icon">
-                <use href={showPassword ? `${svg}#icon-eye` : `${svg}#icon-eye-off`}></use>
+                <use
+                  href={
+                    showPassword ? `${svg}#icon-eye` : `${svg}#icon-eye-off`
+                  }
+                ></use>
               </svg>
             </button>
             {errors.password && (
               <span className="error">{errors.password.message}</span>
             )}
           </div>
-          
+
           {/* Кнопка отправки формы */}
-          <button 
-            type="submit" 
-            className="submit-btn" 
-            disabled={loading}
-          >
+          <button type="submit" className="submit-btn" disabled={loading}>
             {loading ? 'Loading...' : 'Sign Up'}
           </button>
         </form>

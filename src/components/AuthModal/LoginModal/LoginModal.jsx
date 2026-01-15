@@ -8,8 +8,14 @@ import svg from '../../../assets/images/icons.svg';
 
 // Схема валидации
 const schema = yup.object({
-  email: yup.string().required('Email is required').email('Invalid email format'),
-  password: yup.string().required('Password is required').min(6, 'Minimum 6 characters'),
+  email: yup
+    .string()
+    .required('Email is required')
+    .email('Invalid email format'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(6, 'Minimum 6 characters'),
 });
 
 function LoginModal({ isOpen, onClose }) {
@@ -19,11 +25,11 @@ function LoginModal({ isOpen, onClose }) {
   const [showPassword, setShowPassword] = useState(false); // Показать/скрыть пароль
 
   // Настройка react-hook-form
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { errors }, 
-    reset 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -37,14 +43,14 @@ function LoginModal({ isOpen, onClose }) {
   }, [onClose, reset]);
 
   // Обработка отправки формы
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     setError(''); // Очищаем предыдущие ошибки
     setLoading(true); // Включаем загрузку
-    
+
     try {
       // Вызываем функцию логина из auth.js
       const result = await loginUser(data.email, data.password);
-      
+
       if (result.success) {
         // Успешный логин - закрываем модалку
         handleClose();
@@ -62,7 +68,7 @@ function LoginModal({ isOpen, onClose }) {
   };
 
   // Закрытие по клику на фон
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       handleClose();
     }
@@ -70,12 +76,12 @@ function LoginModal({ isOpen, onClose }) {
 
   // Закрытие по клавише Escape
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = e => {
       if (e.key === 'Escape' && isOpen) {
         handleClose();
       }
     };
-    
+
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, handleClose]);
@@ -95,22 +101,18 @@ function LoginModal({ isOpen, onClose }) {
             <use href={`${svg}#icon-close`}></use>
           </svg>
         </button>
-                
+
         {/* Поясняющий текст */}
         <div className="modal-description">
           <p className="description-text">
-            Welcome back! Please enter your credentials to access your account 
+            Welcome back! Please enter your credentials to access your account
             and continue your search for a psychologist.
           </p>
         </div>
-        
+
         {/* Сообщение об ошибке от Firebase */}
-        {error && (
-          <div className="auth-error">
-            {error}
-          </div>
-        )}
-        
+        {error && <div className="auth-error">{error}</div>}
+
         {/* Форма логина */}
         <form className="form-group" onSubmit={handleSubmit(onSubmit)}>
           {/* Поле Email */}
@@ -126,7 +128,7 @@ function LoginModal({ isOpen, onClose }) {
               <span className="error">{errors.email.message}</span>
             )}
           </div>
-          
+
           {/* Поле Password с кнопкой показа/скрытия */}
           <div className="input-group password-group">
             <input
@@ -136,7 +138,7 @@ function LoginModal({ isOpen, onClose }) {
               {...register('password')}
               disabled={loading}
             />
-            <button 
+            <button
               type="button"
               className="toggle-password-btn"
               onClick={() => setShowPassword(!showPassword)}
@@ -144,20 +146,20 @@ function LoginModal({ isOpen, onClose }) {
               disabled={loading}
             >
               <svg className="toggle-password-icon">
-                <use href={showPassword ? `${svg}#icon-eye` : `${svg}#icon-eye-off`}></use>
+                <use
+                  href={
+                    showPassword ? `${svg}#icon-eye` : `${svg}#icon-eye-off`
+                  }
+                ></use>
               </svg>
             </button>
             {errors.password && (
               <span className="error">{errors.password.message}</span>
             )}
           </div>
-          
+
           {/* Кнопка отправки формы */}
-          <button 
-            type="submit" 
-            className="submit-btn" 
-            disabled={loading}
-          >
+          <button type="submit" className="submit-btn" disabled={loading}>
             {loading ? 'Loading...' : 'Log In'}
           </button>
         </form>

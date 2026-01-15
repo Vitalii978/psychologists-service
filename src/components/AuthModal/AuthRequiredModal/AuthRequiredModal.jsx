@@ -4,7 +4,7 @@ import svg from '../../../assets/images/icons.svg';
 
 const AuthRequiredModal = ({ isOpen, onClose }) => {
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyDown = event => {
       if (event.key === 'Escape' && isOpen) {
         onClose();
       }
@@ -14,7 +14,7 @@ const AuthRequiredModal = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -31,18 +31,15 @@ const AuthRequiredModal = ({ isOpen, onClose }) => {
             <use href={`${svg}#icon-close`}></use>
           </svg>
         </div>
-        
+
         <div className="auth-required-content">
           <div className="auth-required-icon">!</div>
-          
+
           <p className="auth-required-message">
             This feature is available only for registered users. Please log in.
           </p>
-          
-          <button 
-            className="auth-required-btn"
-            onClick={onClose}
-          >
+
+          <button className="auth-required-btn" onClick={onClose}>
             OK
           </button>
         </div>

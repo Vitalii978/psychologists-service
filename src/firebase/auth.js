@@ -22,7 +22,7 @@ const getFirebaseErrorMessage = (errorCode) => {
     // Ошибки регистрации
     'auth/email-already-in-use': 'This email is already registered.',
     'auth/weak-password': 'Password is too weak. Minimum 6 characters.',
-    'auth/invalid-email': 'Invalid email format.', // УБИРАЕМ ДУБЛИКАТ
+    'auth/invalid-email': 'Invalid email format.',
     'auth/operation-not-allowed': 'Registration is temporarily disabled.',
     
     // Другие ошибки
@@ -77,7 +77,7 @@ export const logoutUser = async () => {
   }
 };
 
-// 4. Получение данных пользователя
+// 4. Получение данных пользователя - ВОЗВРАЩАЕМ К ПРЕЖНЕЙ ЛОГИКЕ
 export const getUserData = async (userId) => {
   try {
     const userRef = ref(db, 'users/' + userId);
@@ -86,30 +86,34 @@ export const getUserData = async (userId) => {
     if (snapshot.exists()) {
       return { success: true, data: snapshot.val() };
     }
-    return { success: false, error: 'User data not found' };
+    // ВОЗВРАЩАЕМ success: false БЕЗ ОШИБКИ, если данных нет
+    return { success: false };
   } catch (error) {
-    const errorMessage = getFirebaseErrorMessage(error.code);
-    return { success: false, error: errorMessage };
+    console.error('Error getting user data:', error);
+    return { success: false };
   }
 };
 
-// 5. Следим за авторизацией
+// 5. Следим за авторизацией - ИСПРАВЛЯЕМ ЛОГИКУ
 export const onAuthChange = (callback) => {
   return onAuthStateChanged(auth, async (user) => {
     if (user) {
       // Получаем имя из Database
       const userData = await getUserData(user.uid);
-      if (userData.success) {
+      
+      if (userData.success && userData.data) {
+        // Есть данные в Database - используем сохраненное имя
         callback({
           uid: user.uid,
           email: user.email,
           displayName: userData.data.name
         });
       } else {
+        // Нет данных в Database - используем часть email как имя
         callback({
           uid: user.uid,
           email: user.email,
-          displayName: user.email.split('@')[0]
+          displayName: user.email.split('@')[0] // Берем часть до @
         });
       }
     } else {

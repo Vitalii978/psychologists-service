@@ -45,8 +45,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-text {
@@ -74,12 +78,24 @@
 }
 
 @keyframes heartbeat {
-  0% { transform: scale(1); }
-  5% { transform: scale(1.1); }
-  10% { transform: scale(1); }
-  15% { transform: scale(1.1); }
-  20% { transform: scale(1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  5% {
+    transform: scale(1.1);
+  }
+  10% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.1);
+  }
+  20% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .empty-title {
@@ -159,10 +175,10 @@
     padding: 48px 36px;
   }
 
-      .empty-icon {
+  .empty-icon {
     font-size: 170px;
   }
-  
+
   .empty-title {
     font-size: 20px;
   }
@@ -173,27 +189,24 @@
   .favorites-main {
     padding: 48px 16px;
   }
-  
+
   .empty-title {
     font-size: 24px;
   }
-  
+
   .empty-message {
     font-size: 16px;
     padding: 0 16px;
   }
-  
+
   .browse-btn,
   .load-more-btn {
     max-width: 176px;
   }
-
-
 }
 
 /* Адаптивность для очень маленьких экранов */
 @media screen and (max-width: 480px) {
-
 }
 
 /* Стили для якоря */
@@ -214,7 +227,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: rgba(52, 112, 255, 0.4);;
+  background-color: rgba(52, 112, 255, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,9 +238,8 @@
 }
 
 .back-to-top-button:hover {
-  background-color:  #255ee8;;
+  background-color: #255ee8;
   transform: translateY(-3px);
-    
 }
 
 .back-to-top-button:active {
@@ -250,7 +262,7 @@
     width: 50px;
     height: 50px;
   }
-  
+
   .back-to-top-icon {
     width: 22px;
     height: 22px;
@@ -264,7 +276,7 @@
     width: 46px;
     height: 46px;
   }
-  
+
   .back-to-top-icon {
     width: 20px;
     height: 20px;

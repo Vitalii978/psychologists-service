@@ -3,13 +3,13 @@ import './PsychologistCard.css';
 import svg from '../../assets/images/icons.svg';
 import AppointmentModal from '../AppointmentModal/AppointmentModal';
 
-const PsychologistCard = ({ 
-  psychologist, 
-  isFavorite = false, 
+const PsychologistCard = ({
+  psychologist,
+  isFavorite = false,
   onRemoveFavorite = null,
   onFavoriteToggle = null,
   user = null,
-  onOpenAuthRequired = null // ДОБАВЛЯЕМ ЭТОТ ПРОПС
+  onOpenAuthRequired = null, // ДОБАВЛЯЕМ ЭТОТ ПРОПС
 }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
@@ -34,7 +34,7 @@ const PsychologistCard = ({
       }
       return; // Не открываем форму записи
     }
-    
+
     // Если пользователь авторизован - открываем форму
     setShowAppointmentModal(true);
   };
@@ -49,8 +49,8 @@ const PsychologistCard = ({
         <div className="card-left">
           <div className="psychologist-avatar">
             {psychologist.avatar_url ? (
-              <img 
-                src={psychologist.avatar_url} 
+              <img
+                src={psychologist.avatar_url}
                 alt={psychologist.name}
                 className="avatar-image"
               />
@@ -63,31 +63,33 @@ const PsychologistCard = ({
             )}
           </div>
         </div>
-        
+
         <div className="card-right">
           <div className="card-top-row">
             <div className="title-section">
               <div className="psychologist-title">Psychologist</div>
               <h3 className="psychologist-name">{psychologist.name}</h3>
             </div>
-            
+
             <div className="rating-price-favorite">
               <div className="rating-price-container">
-                 <div className="rating-block">
-                   <svg className="star-icon">
-                     <use href={`${svg}#icon-star`} />
-                   </svg>
-                   <span className="rating-label">Rating:</span>
-                   <span className="rating-value">{psychologist.rating}</span>
-                   <span className="rating-separator">|</span>
-                 </div>
-                 <div className="price-block">
-                   <span className="price-label">Price / 1 hour:</span>
-                   <span className="price-value">{psychologist.price_per_hour}$</span>
-                 </div>
+                <div className="rating-block">
+                  <svg className="star-icon">
+                    <use href={`${svg}#icon-star`} />
+                  </svg>
+                  <span className="rating-label">Rating:</span>
+                  <span className="rating-value">{psychologist.rating}</span>
+                  <span className="rating-separator">|</span>
+                </div>
+                <div className="price-block">
+                  <span className="price-label">Price / 1 hour:</span>
+                  <span className="price-value">
+                    {psychologist.price_per_hour}$
+                  </span>
+                </div>
               </div>
-              
-              <button 
+
+              <button
                 className={`favorite-btn ${isFavorite ? 'favorited' : ''}`}
                 onClick={handleFavoriteClick}
               >
@@ -97,71 +99,74 @@ const PsychologistCard = ({
               </button>
             </div>
           </div>
-          
+
           <div className="info-blocks-container">
             <div className="info-block experience-block">
               <span className="info-label">Experience:</span>
               <span className="info-value">{psychologist.experience}</span>
             </div>
-            
+
             <div className="info-block license-block">
               <span className="info-label">License:</span>
               <span className="info-value">{psychologist.license}</span>
             </div>
-            
+
             <div className="info-block specialization-block">
               <span className="info-label">Specialization:</span>
               <span className="info-value">{psychologist.specialization}</span>
             </div>
-            
+
             <div className="info-block consultation-block">
               <span className="info-label">Initial consultation:</span>
-              <span className="info-value">{psychologist.initial_consultation}</span>
+              <span className="info-value">
+                {psychologist.initial_consultation}
+              </span>
             </div>
           </div>
-          
+
           <div className="description-section">
-            <p className="about-text">
-              {psychologist.about}
-            </p>
-            
-            <button 
-              className="read-more-btn"
-              onClick={handleReadMore}
-            >
+            <p className="about-text">{psychologist.about}</p>
+
+            <button className="read-more-btn" onClick={handleReadMore}>
               {showDetails ? 'Show less' : 'Read more'}
             </button>
           </div>
-          
+
           {showDetails && (
             <div className="detailed-info">
               <div className="reviews-section">
                 <div className="reviews-list">
-                  {psychologist.reviews && psychologist.reviews.map((review, index) => (
-                    <div key={index} className="review-item">
-                      <div className="reviewer-header">
-                        <div className="reviewer-avatar">
-                          {review.reviewer?.charAt(0) || 'U'}
-                        </div>
-                        <div className="reviewer-info">
-                          <span className="reviewer-name">{review.reviewer || 'Unknown'}</span>
-                          <div className="review-rating">
-                            <svg>
-                              <use href={`${svg}#icon-star`} />
-                            </svg>
-                            <span className="rating-number">{review.rating || '0'}</span>
-                            
+                  {psychologist.reviews &&
+                    psychologist.reviews.map((review, index) => (
+                      <div key={index} className="review-item">
+                        <div className="reviewer-header">
+                          <div className="reviewer-avatar">
+                            {review.reviewer?.charAt(0) || 'U'}
+                          </div>
+                          <div className="reviewer-info">
+                            <span className="reviewer-name">
+                              {review.reviewer || 'Unknown'}
+                            </span>
+                            <div className="review-rating">
+                              <svg>
+                                <use href={`${svg}#icon-star`} />
+                              </svg>
+                              <span className="rating-number">
+                                {review.rating || '0'}
+                              </span>
+                            </div>
                           </div>
                         </div>
+                        <p className="review-comment">
+                          {review.comment || 'No comment'}
+                        </p>
                       </div>
-                      <p className="review-comment">{review.comment || 'No comment'}</p>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </div>
-              
+
               <div className="appointment-section">
-                <button 
+                <button
                   className="appointment-btn"
                   onClick={handleAppointmentClick} // ИЗМЕНЕН ОБРАБОТЧИК
                 >
@@ -175,7 +180,7 @@ const PsychologistCard = ({
 
       {/* Модалка записи открывается ТОЛЬКО для авторизованных */}
       {user && (
-        <AppointmentModal 
+        <AppointmentModal
           isOpen={showAppointmentModal}
           onClose={handleCloseModal}
           psychologist={psychologist}

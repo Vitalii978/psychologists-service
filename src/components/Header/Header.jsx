@@ -18,13 +18,20 @@ const Header = ({ user, onOpenLogin, onOpenRegister }) => {
           </Link>
 
           <nav className="navigation">
-            <NavLink to="/" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                'nav-link' + (isActive ? ' active' : '')
+              }
+            >
               Home
             </NavLink>
 
             <NavLink
               to="/psychologists"
-              className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+              className={({ isActive }) =>
+                'nav-link' + (isActive ? ' active' : '')
+              }
             >
               Psychologists
             </NavLink>
@@ -32,7 +39,9 @@ const Header = ({ user, onOpenLogin, onOpenRegister }) => {
             {user && (
               <NavLink
                 to="/favorites"
-                className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+                className={({ isActive }) =>
+                  'nav-link' + (isActive ? ' active' : '')
+                }
               >
                 Favorites
               </NavLink>

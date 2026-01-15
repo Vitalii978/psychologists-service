@@ -28,8 +28,6 @@
   outline: none;
 } */
 
-
-
 .clock-icon {
   width: 20px;
   height: 20px;
@@ -110,15 +108,13 @@
 /* Заголовок выпадающего списка */
 .time-dropdown-header {
   padding: 16px;
-    display: flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   font-size: 14px;
   font-weight: 500;
   color: rgba(25, 26, 21, 0.7);
 }
-
-
 
 .dropdown-clock-icon {
   width: 20px;
@@ -159,7 +155,7 @@
 }
 
 .time-option.selected::after {
-  content: "✓";
+  content: '✓';
   position: absolute;
   right: 16px;
   color: #3470ff;

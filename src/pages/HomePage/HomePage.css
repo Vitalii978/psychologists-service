@@ -1,12 +1,10 @@
-
 .home-main {
   padding: 25px 36px;
   min-height: 100vh;
   background-color: #fbfbfb;
   width: 100%;
   overflow-x: hidden; /* Запрещаем горизонтальный скролл */
-      background: linear-gradient(to left top, #3470ff, rgba(25, 26, 21, 0) 50%);
-
+  background: linear-gradient(to left top, #3470ff, rgba(25, 26, 21, 0) 50%);
 }
 
 .home-content {
@@ -15,17 +13,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 60px; 
+  gap: 60px;
   width: 100%;
   margin: 0 auto;
 }
 
-
-
 .home-left {
-  max-width: 595px; 
-  order: 1;  /* Всегда сверху на мобильных */
-
+  max-width: 595px;
+  order: 1; /* Всегда сверху на мобильных */
 }
 
 .home-title {
@@ -33,16 +28,15 @@
   font-size: 50px;
   line-height: 1.03;
   color: #191a15;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
-  @media screen and (min-width: 768px) {
-    .home-title {
-      font-size: 80px;
-      line-height: 1.03;
-    }
+@media screen and (min-width: 768px) {
+  .home-title {
+    font-size: 80px;
+    line-height: 1.03;
   }
-
+}
 
 .depths-blue {
   font-style: italic;
@@ -54,13 +48,11 @@
   font-size: 18px;
   line-height: 1.3;
   color: #191a15;
-  margin-bottom: 40px; 
-  max-width: 510px 
+  margin-bottom: 40px;
+  max-width: 510px;
 }
 
-
 .btn-get-started {
-  
   width: 235px;
   height: 60px;
   font-weight: 500;
@@ -84,7 +76,7 @@
 }
 
 .btn-get-started:hover {
-  background-color: #255ee8;;
+  background-color: #255ee8;
 }
 
 .home-right {
@@ -95,7 +87,7 @@
 }
 
 .image-container {
-    max-width: 464px;
+  max-width: 464px;
   height: 526px;
   position: relative;
   margin: 0 auto;
@@ -107,13 +99,12 @@
   border-radius: 10px;
 }
 
-   @media (min-device-pixel-ratio: 2),      
-    (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url('/src/assets/images/hero@2x.jpg');
-  }
-
+@media (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  background-image: url('/src/assets/images/hero@2x.jpg');
+}
 
 .green-square {
   position: absolute;
@@ -135,7 +126,6 @@
   }
 }
 
-
 .yellow-square {
   position: absolute;
   width: 48px;
@@ -148,16 +138,14 @@
   align-items: center;
   right: -8%;
   top: 9%;
-   z-index: 1;
+  z-index: 1;
   svg {
     width: 20px;
     height: 20px;
     fill: #fbfbfb;
     transform: rotate(-15deg);
-    
   }
 }
-
 
 .blue-card {
   position: absolute;
@@ -166,21 +154,18 @@
   max-width: 311px;
   width: 100%;
   max-height: 118px;
-  background-color: #3E85F3;
+  background-color: #3e85f3;
   border-radius: 20px;
-  padding: 32px; 
+  padding: 32px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 16px; 
+  gap: 16px;
   z-index: 3;
 }
 
-
-
 .card-icon {
-  
   width: 54px;
   height: 54px;
   background-color: #ffffff;
@@ -192,11 +177,9 @@
   svg {
     width: 22px;
     height: 15px;
-    fill:  #3470ff;
-    
+    fill: #3470ff;
   }
 }
-
 
 .card-text {
   display: flex;
@@ -206,7 +189,7 @@
 
 .card-title {
   width: 180px;
-  font-size: 14px; 
+  font-size: 14px;
   font-weight: 400;
   color: rgba(251, 251, 251, 0.5);
 }
@@ -218,31 +201,26 @@
   color: #ffffff;
 }
 
-
-  @media screen and (min-width: 1100px) {
-    .home-content {
+@media screen and (min-width: 1100px) {
+  .home-content {
     flex-direction: row;
     gap: 125px;
   }
 
   .home-main {
-    padding: 78px 128px; 
-  
-}
+    padding: 78px 128px;
+  }
 
-.image-container {
+  .image-container {
+    max-width: 464px;
+    height: 526px;
+  }
 
-  max-width: 464px; 
-  height: 526px; 
-}
-
-.blue-card {
-  position: absolute;
-  top: 65%;
-  left: -20%;
-  width: 100%;
-  width: 311px;
-
-}
-
+  .blue-card {
+    position: absolute;
+    top: 65%;
+    left: -20%;
+    width: 100%;
+    width: 311px;
+  }
 }

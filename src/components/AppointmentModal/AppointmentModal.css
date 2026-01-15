@@ -17,10 +17,10 @@
 
 /* Само модальное окно */
 .modal-content-appointment {
-  background-color:  #fbfbfb;;
+  background-color: #fbfbfb;
   border-radius: 30px;
   padding: 30px;
-  width: 100%; 
+  width: 100%;
   max-width: 600px;
   max-height: 100vh;
   position: relative;
@@ -41,7 +41,6 @@
   margin-bottom: 10px;
 }
 
-
 .description-text {
   font-size: 12px;
   font-weight: 400;
@@ -52,16 +51,16 @@
 /* Кнопка закрытия (крестик) */
 .close-btn-appointment {
   position: absolute;
-  right: 20px;    
-  top: 20px;      
+  right: 20px;
+  top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   background-color: transparent;
   cursor: pointer;
-  width: 32px;    
-  height: 32px;   
+  width: 32px;
+  height: 32px;
   padding: 0;
   margin: 0;
   border-radius: 8px;
@@ -69,13 +68,12 @@
 }
 
 .close-btn-appointment svg {
-    /* width: 26px;    
+  /* width: 26px;    
     height: 26px;    */
-    stroke: #191a15;
-    stroke-width: 2;
-    transition: stroke 0.3s ease;
+  stroke: #191a15;
+  stroke-width: 2;
+  transition: stroke 0.3s ease;
 }
-
 
 /* Информация о психологе с фото */
 .psychologist-info-with-photo {
@@ -119,7 +117,6 @@
   gap: 4px;
 }
 
-
 .psychologist-title {
   font-weight: 500;
   font-size: 12px;
@@ -127,7 +124,6 @@
   color: #8a8a89;
   margin: 0;
 }
-
 
 .psychologist-name-label {
   font-weight: 500;
@@ -166,16 +162,16 @@
 /* Общие стили для input, select и textarea */
 .form-input,
 .form-textarea {
-    width: 100%;
-    height: 52px;
-    border: 1px solid rgba(25, 26, 21, 0.1);
-    border-radius: 12px;
-    padding: 16px 18px;
-    outline: none;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.25;
-    color: #191a15;
+  width: 100%;
+  height: 52px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  outline: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #191a15;
 }
 
 /* .form-input::placeholder,
@@ -281,37 +277,36 @@ color: #191a15;
 }
 
 @media screen and (min-width: 600px) {
-.modal-content-appointment {
-  padding: 64px;
-}
+  .modal-content-appointment {
+    padding: 64px;
+  }
 
-.modal-title {
-  font-size: 40px;
-  line-height: 48px;
-  margin-bottom: 20px;
-}
+  .modal-title {
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 20px;
+  }
 
-.description-text {
-  font-size: 16px;
-  line-height: 20px;
-  /* margin-battom: 20px; */
-}
+  .description-text {
+    font-size: 16px;
+    line-height: 20px;
+    /* margin-battom: 20px; */
+  }
 
-.psychologist-info-with-photo {
-  margin-top: 40px;
-}
+  .psychologist-info-with-photo {
+    margin-top: 40px;
+  }
 
-.form-row {
-  display: flex;
-  flex-direction: row;
-  gap-column: 16px
-}
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    gap-column: 16px;
+  }
 
-.form-buttons {
-  display: flex;
-  margin-top: 24px;
-}
-
+  .form-buttons {
+    display: flex;
+    margin-top: 24px;
+  }
 }
 
 /* ДОБАВЛЯЕМ ЭТИ СТИЛИ В КОНЕЦ СУЩЕСТВУЮЩЕГО ФАЙЛА */

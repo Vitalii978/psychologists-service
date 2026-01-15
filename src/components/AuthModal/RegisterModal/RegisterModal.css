@@ -115,7 +115,7 @@
 
 .input-group input:focus {
   outline: none;
-  border-color: #54ADFF;
+  border-color: #54adff;
   box-shadow: 0 0 0 2px rgba(84, 173, 255, 0.1);
 }
 
@@ -222,7 +222,7 @@
   }
 
   .modal-header h2 {
-    font-size: 40px;     
+    font-size: 40px;
   }
 
   .modal-description {
@@ -238,29 +238,29 @@
   .modal-content {
     padding: 24px;
   }
-  
+
   .modal-header h2 {
     font-size: 28px;
   }
-  
+
   .description-text {
     font-size: 13px;
   }
-  
+
   .close-btn {
     right: 15px;
     top: 15px;
   }
-  
+
   .input-group {
     height: 48px;
   }
-  
+
   .input-group input {
     padding: 14px 16px;
     font-size: 15px;
   }
-  
+
   .submit-btn {
     padding: 14px;
     font-size: 15px;
