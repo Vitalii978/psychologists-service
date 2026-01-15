@@ -3,7 +3,7 @@
 Web application for finding psychologists and booking consultations.
 
 ## 🚀 Live Demo
-[Link will be added after deployment](#)
+[Psychologists.Services](https://psychologists-service-eight.vercel.app)
 
 ## 📋 Project Description
 
@@ -154,8 +154,8 @@ npm start
 
 **Vitalii Klymenko**
 
-- GitHub: [https://github.com/VitaliiKlymenko](https://github.com/VitaliiKlymenko)
-- LinkedIn: [https://linkedin.com/in/vitalii-klymenko](https://linkedin.com/in/vitalii-klymenko)
+- GitHub: [VitaliiKlymenko](https://github.com/VitaliiKlymenko)
+- LinkedIn: [VitaliiKlymenko](https://linkedin.com/in/vitalii-klymenko)
 
 ## 📄 License
 
@@ -171,7 +171,7 @@ This project was created for educational purposes as part of a technical assignm
 Веб-приложение для поиска психологов и записи на консультации.
 
 ## 🚀 Живая демонстрация
-[Ссылка появится после деплоя](#)
+[Psychologists.Services](https://psychologists-service-eight.vercel.app)
 
 ## 📋 Описание проекта
 
@@ -319,8 +319,8 @@ npm start
 
 **Vitalii Klymenko**
 
-- GitHub: [https://github.com/VitaliiKlymenko](https://github.com/VitaliiKlymenko)
-- LinkedIn: [https://linkedin.com/in/vitalii-klymenko](https://linkedin.com/in/vitalii-klymenko)
+- GitHub: [VitaliiKlymenko](https://github.com/VitaliiKlymenko)
+- LinkedIn: [VitaliiKlymenko](https://linkedin.com/in/vitalii-klymenko)
 
 ## 📄 Лицензия
 
