@@ -90,6 +90,8 @@ function App() {
         isOpen={showAuthRequiredModal}
         onClose={() => setShowAuthRequiredModal(false)}
       />
+
+      <Route path="*" element={<NotFoundPage />} />
     </BrowserRouter>
   );
 }
