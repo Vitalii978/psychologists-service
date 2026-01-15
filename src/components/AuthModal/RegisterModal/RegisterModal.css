@@ -11,39 +11,17 @@
   justify-content: center;
   z-index: 1000;
   padding: 20px;
-  animation: fadeIn 0.3s ease;
 }
-
-/* @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-} */
 
 /* Контент модального окна */
 .modal-content {
-  background-color: #fbfbfb;;
+  background-color: #fbfbfb;
   border-radius: 30px;
   padding: 30px;
   max-width: 566px;
   width: 100%;
   position: relative;
-  animation: slideUp 0.3s ease;
 }
-
-/* @keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-} */
 
 /* Заголовок модалки */
 .modal-header {
@@ -74,16 +52,6 @@
   margin: 0;
 }
 
-/* Если есть ошибка, увеличиваем отступ */
-.auth-error + .modal-description {
-  margin-top: 16px;
-}
-
-/* Корректируем отступы для формы */
-/* .auth-error ~ form .input-group:first-child {
-  margin-top: 0;
-} */
-
 /* Кнопка закрытия */
 .close-btn {
   position: absolute;
@@ -96,49 +64,40 @@
   text-align: center;
   width: 32px;
   height: 32px;
-
-  svg {
-    width: 26px;
-    height: 26px;
-    stroke-width: 2.50px;
-    stroke: #191a15;
-  }
+  transition: transform 0.2s ease;
 }
 
-/* .close-btn:hover {
-  color: #54ADFF;
-} */
+.close-btn:hover {
+  transform: scale(1.1);
+}
 
-/* Группы полей ввода */
+.close-btn svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 2.5px;
+  stroke: #191a15;
+}
+
+/* Обертка формы */
 .form-group {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-direction: column;
   gap: 18px;
-
-  /* margin-bottom: 18px;
-  position: relative; */
+  width: 100%;
 }
 
-/* Стили для поля с паролем */
-.password-group {
-  position: relative;
-}
-
-.password-group input {
-  padding-right: 50px; /* Место для кнопки глаза */
-}
-
+/* Группы полей ввода */
 .input-group {
   max-width: 438px;
   width: 100%;
   height: 52px;
+  position: relative;
 }
 
 /* Поля ввода */
 .input-group input {
   width: 100%;
+  height: 100%;
   padding: 16px 18px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   border-radius: 12px;
@@ -146,11 +105,12 @@
   line-height: 1.25;
   color: #191a15;
   background-color: #fbfbfb;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .input-group input::placeholder {
-  color: #191a15;
+  color: rgba(25, 26, 21, 0.5);
 }
 
 .input-group input:focus {
@@ -159,18 +119,31 @@
   box-shadow: 0 0 0 2px rgba(84, 173, 255, 0.1);
 }
 
-/* Стили для ошибок */
+.input-group input:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+/* Стили для поля с паролем */
+.password-group input {
+  padding-right: 50px;
+}
+
+/* Стили для ошибок валидации */
 .input-error {
   border-color: #ff4d4d !important;
 }
 
 .error {
-  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
   color: #ff4d4d;
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 4px;
 }
 
+/* Стили для ошибок Firebase */
 .auth-error {
   background-color: #ffeded;
   color: #ff4d4d;
@@ -179,6 +152,7 @@
   margin-bottom: 20px;
   font-size: 14px;
   border: 1px solid #ffcccc;
+  text-align: center;
 }
 
 /* Кнопка показа/скрытия пароля */
@@ -194,29 +168,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* color: #666; */
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
   z-index: 2;
 }
 
-/* .toggle-password-btn:hover {
-  color: #54ADFF;
-} */
+.toggle-password-btn:hover {
+  opacity: 0.7;
+}
 
-/* .toggle-password-btn:focus {
-  outline: none;
-} */
+.toggle-password-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 .toggle-password-icon {
   width: 20px;
   height: 20px;
   stroke-width: 2px;
-  stroke: #191a15;;
+  stroke: #191a15;
   fill: transparent;
 }
 
 /* Кнопка отправки формы */
 .submit-btn {
+  max-width: 438px;
   width: 100%;
   padding: 16px;
   background-color: #3470ff;
@@ -228,6 +203,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 22px;
+  display: block;
 }
 
 .submit-btn:hover:not(:disabled) {
@@ -241,21 +217,52 @@
 
 /* Адаптивность */
 @media screen and (min-width: 600px) {
-.modal-content {
-  padding: 64px;
-}
-
-.modal-header h2 {
-  font-size: 40px;     
-}
-
-.modal-description {
-  margin-bottom: 40px;
-}
-
-.description-text {
-  font-size: 16px;
-}
-
-
+  .modal-content {
+    padding: 64px;
   }
+
+  .modal-header h2 {
+    font-size: 40px;     
+  }
+
+  .modal-description {
+    margin-bottom: 40px;
+  }
+
+  .description-text {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .modal-content {
+    padding: 24px;
+  }
+  
+  .modal-header h2 {
+    font-size: 28px;
+  }
+  
+  .description-text {
+    font-size: 13px;
+  }
+  
+  .close-btn {
+    right: 15px;
+    top: 15px;
+  }
+  
+  .input-group {
+    height: 48px;
+  }
+  
+  .input-group input {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+  
+  .submit-btn {
+    padding: 14px;
+    font-size: 15px;
+  }
+}

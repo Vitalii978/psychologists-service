@@ -7,6 +7,31 @@ import {
 import { auth, db } from './config';
 import { ref, set, get } from 'firebase/database';
 
+// Функция для перевода ошибок Firebase в понятные сообщения
+const getFirebaseErrorMessage = (errorCode) => {
+  const errorMessages = {
+    // Общие ошибки
+    'auth/network-request-failed': 'Network error. Please check your connection.',
+    'auth/too-many-requests': 'Too many attempts. Please try again later.',
+    
+    // Ошибки логина
+    'auth/user-not-found': 'User not found. Please check your email.',
+    'auth/wrong-password': 'Invalid password. Please try again.',
+    'auth/user-disabled': 'This account has been disabled.',
+    
+    // Ошибки регистрации
+    'auth/email-already-in-use': 'This email is already registered.',
+    'auth/weak-password': 'Password is too weak. Minimum 6 characters.',
+    'auth/invalid-email': 'Invalid email format.', // УБИРАЕМ ДУБЛИКАТ
+    'auth/operation-not-allowed': 'Registration is temporarily disabled.',
+    
+    // Другие ошибки
+    'auth/invalid-credential': 'Invalid email or password.',
+  };
+  
+  return errorMessages[errorCode] || 'An error occurred. Please try again.';
+};
+
 // 1. Регистрация
 export const registerUser = async (email, password, name) => {
   try {
@@ -17,12 +42,15 @@ export const registerUser = async (email, password, name) => {
     // Сохраняем имя в Firebase Database
     await set(ref(db, 'users/' + user.uid), {
       name: name,
-      email: email
+      email: email,
+      createdAt: new Date().toISOString()
     });
     
     return { success: true };
   } catch (error) {
-    return { success: false, error: error.message };
+    // Преобразуем ошибку Firebase в понятное сообщение
+    const errorMessage = getFirebaseErrorMessage(error.code);
+    return { success: false, error: errorMessage };
   }
 };
 
@@ -32,7 +60,9 @@ export const loginUser = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
     return { success: true };
   } catch (error) {
-    return { success: false, error: error.message };
+    // Преобразуем ошибку Firebase в понятное сообщение
+    const errorMessage = getFirebaseErrorMessage(error.code);
+    return { success: false, error: errorMessage };
   }
 };
 
@@ -42,7 +72,8 @@ export const logoutUser = async () => {
     await signOut(auth);
     return { success: true };
   } catch (error) {
-    return { success: false, error: error.message };
+    const errorMessage = getFirebaseErrorMessage(error.code);
+    return { success: false, error: errorMessage };
   }
 };
 
@@ -55,9 +86,10 @@ export const getUserData = async (userId) => {
     if (snapshot.exists()) {
       return { success: true, data: snapshot.val() };
     }
-    return { success: false };
+    return { success: false, error: 'User data not found' };
   } catch (error) {
-    return { success: false, error: error.message };
+    const errorMessage = getFirebaseErrorMessage(error.code);
+    return { success: false, error: errorMessage };
   }
 };
 
