@@ -233,17 +233,7 @@ color: #191a15;
   margin-bottom: 14px;
 }
 
-/* Отзывы с Read more */
-/* .reviews-section {
-  margin-bottom: 8px;
-} */
 
-/* .reviews-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-} */
 
 .reviews-title {
   font-size: 20px;
@@ -258,13 +248,8 @@ color: #191a15;
   color: #3470ff;
   font-size: 16px;
   font-weight: 500;
-  cursor
-/* }: pointer;
-  padding: 0;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: color 0.3s ease; */
+  cursor: pointer;
+
 }
 
 .reviews-read-more-btn:hover {
@@ -279,11 +264,7 @@ color: #191a15;
   margin-bottom: 40px;
 }
 
-/* .review-item {
-  padding: 16px;
-  background-color: #f8f9fa;
-  border-radius: 15px;
-} */
+
 
 .reviewer-header {
   display: flex;
@@ -426,7 +407,7 @@ color: #191a15;
   border-color: #255ee8;
 }
 
-/* Адаптивность */
+
 @media screen and (max-width: 1100px) {
   .psychologist-card {
     flex-direction: column;
