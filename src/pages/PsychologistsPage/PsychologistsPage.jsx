@@ -252,20 +252,21 @@ const PsychologistsPage = ({ user, onOpenAuthRequired }) => {
           ) : (
             <>
 
-              <div className="psychologists-grid">
+              <ul className="psychologists-grid">
                 {sortedPsychologists.map(psychologist => (
-                  <PsychologistCard
-                    key={psychologist.id} 
-                    psychologist={psychologist} 
-                    isFavorite={favoritesStatus[psychologist.id] || false}
-                    onFavoriteToggle={() =>
+                  <li key={psychologist.id} className="psychologists-grid-item">
+                    <PsychologistCard
+                      psychologist={psychologist}
+                      isFavorite={favoritesStatus[psychologist.id] || false}
+                      onFavoriteToggle={() =>
                       handleFavoriteToggle(psychologist.id, psychologist)
                     }
-                    user={user} 
-                    onOpenAuthRequired={onOpenAuthRequired}
-                  />
+                      user={user}
+                      onOpenAuthRequired={onOpenAuthRequired}
+                    />
+                  </li>
                 ))}
-              </div>
+              </ul>
 
               {hasMore && !isLoading && (
                 <div className="load-more-container">

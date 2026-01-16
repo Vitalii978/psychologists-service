@@ -11,16 +11,13 @@ const getFirebaseErrorMessage = (errorCode) => {
   const errorMessages = {
     'auth/network-request-failed': 'Network error. Please check your connection.',
     'auth/too-many-requests': 'Too many attempts. Please try again later.',
-
     'auth/user-not-found': 'User not found. Please check your email.',
     'auth/wrong-password': 'Invalid password. Please try again.',
     'auth/user-disabled': 'This account has been disabled.',
-
     'auth/email-already-in-use': 'This email is already registered.',
     'auth/weak-password': 'Password is too weak. Minimum 6 characters.',
     'auth/invalid-email': 'Invalid email format.',
     'auth/operation-not-allowed': 'Registration is temporarily disabled.',
-
     'auth/invalid-credential': 'Invalid email or password.',
   };
   
@@ -31,7 +28,7 @@ export const registerUser = async (email, password, name) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-  
+    
     await set(ref(db, 'users/' + user.uid), {
       name: name,
       email: email,
@@ -40,7 +37,6 @@ export const registerUser = async (email, password, name) => {
     
     return { success: true };
   } catch (error) {
-
     const errorMessage = getFirebaseErrorMessage(error.code);
     return { success: false, error: errorMessage };
   }
@@ -74,10 +70,8 @@ export const getUserData = async (userId) => {
     if (snapshot.exists()) {
       return { success: true, data: snapshot.val() };
     }
-
     return { success: false };
-  } catch (error) {
-    console.error('Error getting user data:', error);
+  } catch {
     return { success: false };
   }
 };
@@ -85,6 +79,8 @@ export const getUserData = async (userId) => {
 export const onAuthChange = (callback) => {
   return onAuthStateChanged(auth, async (user) => {
     if (user) {
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
       const userData = await getUserData(user.uid);
       
       if (userData.success && userData.data) {
@@ -97,7 +93,7 @@ export const onAuthChange = (callback) => {
         callback({
           uid: user.uid,
           email: user.email,
-          displayName: user.email.split('@')[0] 
+          displayName: user.email.split('@')[0]
         });
       }
     } else {

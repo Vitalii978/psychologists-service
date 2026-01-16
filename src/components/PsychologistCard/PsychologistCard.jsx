@@ -133,10 +133,10 @@ const PsychologistCard = ({
           {showDetails && (
             <div className="detailed-info">
               <div className="reviews-section">
-                <div className="reviews-list">
+                <ul className="reviews-list">
                   {psychologist.reviews &&
                     psychologist.reviews.map((review, index) => (
-                      <div key={index} className="review-item">
+                      <li key={index} className="review-item">
                         <div className="reviewer-header">
                           <div className="reviewer-avatar">
                             {review.reviewer?.charAt(0) || 'U'}
@@ -158,9 +158,9 @@ const PsychologistCard = ({
                         <p className="review-comment">
                           {review.comment || 'No comment'}
                         </p>
-                      </div>
+                      </li>
                     ))}
-                </div>
+                </ul>
               </div>
 
               <div className="appointment-section">

@@ -16,10 +16,19 @@
   margin: 0 auto;
 }
 
+
 .psychologists-grid {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+
+.psychologists-grid-item {
+  display: block;
 }
 
 .load-more-container {
@@ -111,7 +120,6 @@
   fill: none;
   stroke-width: 2;
 }
-
 
 @media (max-width: 768px) {
   .back-to-top-button {

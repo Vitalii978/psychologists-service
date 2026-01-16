@@ -68,17 +68,19 @@ const TimeSelect = ({ field, form, disabled = false }) => {
               <span>Meeting time</span>
             </div>
 
-            <div className="time-options-list">
+            <ul className="time-options-list">
               {timeOptions.map(time => (
-                <div
+                <li
                   key={time}
                   className={`time-option ${field.value === time ? 'selected' : ''}`}
                   onClick={() => handleTimeSelect(time)}
+                  role="option"
+                  aria-selected={field.value === time}
                 >
                   <span className="time-option-value">{time}</span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </>
       )}

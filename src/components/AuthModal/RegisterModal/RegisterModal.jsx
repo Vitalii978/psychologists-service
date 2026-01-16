@@ -7,32 +7,17 @@ import './RegisterModal.css';
 import svg from '../../../assets/images/icons.svg';
 
 const schema = yup.object({
-  name: yup
-    .string()
-    .required('Name is required')
-    .min(2, 'Minimum 2 characters'),
-  email: yup
-    .string()
-    .required('Email is required')
-    .email('Invalid email format'),
-  password: yup
-    .string()
-    .required('Password is required')
-    .min(6, 'Minimum 6 characters'),
+  name: yup.string().required('Name is required').min(2, 'Minimum 2 characters'),
+  email: yup.string().required('Email is required').email('Invalid email format'),
+  password: yup.string().required('Password is required').min(6, 'Minimum 6 characters'),
 });
 
-function RegisterModal({ isOpen, onClose }) {
+function RegisterModal({ isOpen, onClose, onRegisterSuccess }) {
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const [error, setError] = useState(''); 
-  const [loading, setLoading] = useState(false); 
-  const [showPassword, setShowPassword] = useState(false); 
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -43,39 +28,41 @@ function RegisterModal({ isOpen, onClose }) {
     setShowPassword(false);
   }, [onClose, reset]);
 
-  const onSubmit = async data => {
-    setError(''); 
-    setLoading(true); 
-
-    try {
-      const result = await registerUser(data.email, data.password, data.name);
-
-      if (result.success) {
-        handleClose();
-      } else {
-        setError(result.error || 'Registration failed. Please try again.');
+  const onSubmit = async (data) => {
+    setError('');
+    setLoading(true);
+    
+    const result = await registerUser(data.email, data.password, data.name);
+    
+    if (result.success) {
+    
+      if (onRegisterSuccess) {
+        onRegisterSuccess({
+          name: data.name,
+          email: data.email
+        });
       }
-    } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
-      console.error('Registration error:', err);
-    } finally {
-      setLoading(false);
+      handleClose();
+    } else {
+      setError(result.error);
     }
+    
+    setLoading(false);
   };
 
-  const handleBackdropClick = e => {
+  const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       handleClose();
     }
   };
 
   useEffect(() => {
-    const handleEscape = e => {
+    const handleEscape = (e) => {
       if (e.key === 'Escape' && isOpen) {
         handleClose();
       }
     };
-
+    
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, handleClose]);
@@ -87,7 +74,7 @@ function RegisterModal({ isOpen, onClose }) {
       <div className="modal-content">
         <div className="modal-header">
           <h2>Registration</h2>
-        </div>
+        </div>  
 
         <button className="close-btn" onClick={handleClose}>
           <svg>
@@ -97,15 +84,19 @@ function RegisterModal({ isOpen, onClose }) {
 
         <div className="modal-description">
           <p className="description-text">
-            Thank you for your interest in our platform! In order to register,
-            we need some information. Please provide us with the following
-            information.
+            Thank you for your interest in our platform! In order to register, 
+            we need some information. Please provide us with the following information.
           </p>
         </div>
 
-        {error && <div className="auth-error">{error}</div>}
+        {error && (
+          <div className="auth-error">
+            {error}
+          </div>
+        )}
 
         <form className="form-group" onSubmit={handleSubmit(onSubmit)}>
+
           <div className="input-group">
             <input
               type="text"
@@ -140,7 +131,7 @@ function RegisterModal({ isOpen, onClose }) {
               {...register('password')}
               disabled={loading}
             />
-            <button
+            <button 
               type="button"
               className="toggle-password-btn"
               onClick={() => setShowPassword(!showPassword)}
@@ -148,11 +139,7 @@ function RegisterModal({ isOpen, onClose }) {
               disabled={loading}
             >
               <svg className="toggle-password-icon">
-                <use
-                  href={
-                    showPassword ? `${svg}#icon-eye` : `${svg}#icon-eye-off`
-                  }
-                ></use>
+                <use href={showPassword ? `${svg}#icon-eye` : `${svg}#icon-eye-off`}></use>
               </svg>
             </button>
             {errors.password && (
@@ -160,7 +147,11 @@ function RegisterModal({ isOpen, onClose }) {
             )}
           </div>
 
-          <button type="submit" className="submit-btn" disabled={loading}>
+          <button 
+            type="submit" 
+            className="submit-btn" 
+            disabled={loading}
+          >
             {loading ? 'Loading...' : 'Sign Up'}
           </button>
         </form>

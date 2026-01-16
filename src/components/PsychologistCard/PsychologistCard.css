@@ -1,5 +1,5 @@
 .psychologist-card {
-  background-color: #fbfbfb;;
+  background-color: #fbfbfb;
   border-radius: 24px;
   padding: 24px;
   box-shadow: 0 4px 28px rgba(0, 0, 0, 0.06);
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; 
+  position: relative;
 }
 
 .avatar-image {
@@ -43,26 +43,25 @@
 .psychologist-avatar::before {
   content: "";
   position: absolute;
-  top: 7.5px; 
-  right: 7.5px; 
+  top: 7.5px;
+  right: 7.5px;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #FBFBFB; 
+  background-color: #fbfbfb;
   display: block;
   z-index: 1;
 }
 
-
 .psychologist-avatar::after {
   content: "";
   position: absolute;
-  top: 10px; 
-  right: 10px; 
+  top: 10px;
+  right: 10px;
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background-color: #38cd3e; 
+  background-color: #38cd3e;
   display: block;
   z-index: 2;
 }
@@ -120,11 +119,11 @@
 }
 
 .rating-label,
-.rating-value{
-font-weight: 500;
-font-size: 16px;
-line-height: 1.5;
-color: #191a15;
+.rating-value {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #191a15;
 }
 
 .rating-value {
@@ -176,7 +175,6 @@ color: #191a15;
   transition: all 0.3s ease;
 }
 
-
 .favorite-btn.favorited svg {
   fill: #3470ff;
   stroke-width: 2px;
@@ -191,8 +189,8 @@ color: #191a15;
 
 .info-block {
   padding: 8px 16px;
-  background-color:  #f3f3f3; 
-  border-radius: 30px; 
+  background-color: #f3f3f3;
+  border-radius: 30px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -210,9 +208,7 @@ color: #191a15;
   font-size: 16px;
   font-weight: 500;
   color: #191a15;
-
 }
-
 
 .about-text {
   font-weight: 400;
@@ -221,8 +217,6 @@ color: #191a15;
   color: rgba(25, 26, 21, 0.5);
   margin-bottom: 14px;
 }
-
-
 
 .reviews-title {
   font-size: 20px;
@@ -238,7 +232,6 @@ color: #191a15;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-
 }
 
 .reviews-read-more-btn:hover {
@@ -251,15 +244,15 @@ color: #191a15;
   flex-direction: column;
   gap: 25px;
   margin-bottom: 40px;
+  list-style: none; 
+  padding: 0; /
 }
-
-
 
 .reviewer-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .reviewer-avatar {
@@ -274,7 +267,7 @@ color: #191a15;
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
-  color: #3470ff;  
+  color: #3470ff;
 }
 
 .reviewer-info {
@@ -287,7 +280,7 @@ color: #191a15;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #191a15
+  color: #191a15;
 }
 
 .review-rating {
@@ -311,10 +304,9 @@ color: #191a15;
 .review-comment {
   font-size: 14px;
   line-height: 1.4;
-  color: rgba(25, 26, 21, 0.7);
+  color: rgba(25, 26, 21, 0.5);
   margin: 0;
 }
-
 
 .appointment-section {
   display: flex;
@@ -341,7 +333,6 @@ color: #191a15;
 }
 
 .description-section {
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -358,15 +349,12 @@ color: #191a15;
   text-decoration-skip-ink: none;
   color: #191a15;
   align-self: flex-start;
-  
 }
 
 .read-more-btn:hover {
   color: #255ee8;
   text-decoration-thickness: 2px;
 }
-
-
 
 .load-more-container {
   display: flex;
@@ -378,8 +366,8 @@ color: #191a15;
   padding: 14px 40px;
   border: 1px solid #3470ff;
   border-radius: 30px;
-  background-color: #3470ff; 
-  color: #ffffff; 
+  background-color: #3470ff;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
@@ -389,10 +377,9 @@ color: #191a15;
 }
 
 .load-more-btn:hover {
-  background-color: #255ee8; 
+  background-color: #255ee8;
   border-color: #255ee8;
 }
-
 
 @media screen and (max-width: 1100px) {
   .psychologist-card {
@@ -400,17 +387,16 @@ color: #191a15;
     gap: 24px;
     padding: 32px;
   }
-  
-  
+
   .card-left {
     align-self: center;
   }
-  
+
   .card-top-row {
     flex-direction: column;
     gap: 16px;
   }
-  
+
   .rating-price-favorite {
     width: 100%;
     justify-content: space-between;
@@ -427,14 +413,13 @@ color: #191a15;
     gap: 12px;
     align-items: flex-start;
   }
-
 }
 
 @media screen and (max-width: 480px) {
   .psychologist-card {
     padding: 20px;
   }
-  
+
   .psychologist-avatar {
     width: 100px;
     height: 100px;
@@ -445,5 +430,5 @@ color: #191a15;
   width: 16px;
   height: 16px;
   margin-left: 4px;
-  fill: #ffc107; 
+  fill: #ffc107;
 }

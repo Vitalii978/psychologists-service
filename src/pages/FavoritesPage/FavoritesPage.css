@@ -16,10 +16,19 @@
   margin: 0 auto;
 }
 
+
 .favorites-grid {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+
+.favorites-grid-item {
+  display: block;
 }
 
 .loading-container {

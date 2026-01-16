@@ -146,18 +146,19 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
             ) : (
 
               <>
-                <div className="favorites-grid">
+                <ul className="favorites-grid">
                   {visibleFavorites.map(psychologist => (
-                    <PsychologistCard 
-                      key={psychologist.id}
-                      psychologist={psychologist}
-                      isFavorite={true}
-                      onRemoveFavorite={() => handleRemoveFavorite(psychologist.id)}
-                      user={user}
-                      onOpenAuthRequired={onOpenAuthRequired}
-                    />
+                    <li key={psychologist.id} className="favorites-grid-item">
+                      <PsychologistCard 
+                        psychologist={psychologist}
+                        isFavorite={true}
+                        onRemoveFavorite={() => handleRemoveFavorite(psychologist.id)}
+                        user={user}
+                        onOpenAuthRequired={onOpenAuthRequired}
+                      />
+                    </li>
                   ))}
-                </div>
+                </ul>
                 
                 {visibleCount < favorites.length && (
                   <div className="load-more-container">

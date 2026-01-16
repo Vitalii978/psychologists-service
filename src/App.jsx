@@ -3,12 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { onAuthChange } from './firebase/auth';
 import './index.css';
 
-// Страницы
 import HomePage from './pages/HomePage/HomePage';
 import PsychologistsPage from './pages/PsychologistsPage/PsychologistsPage';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 
-// Компоненты
 import Header from './components/Header/Header';
 import LoginModal from './components/AuthModal/LoginModal/LoginModal';
 import RegisterModal from './components/AuthModal/RegisterModal/RegisterModal';
@@ -49,7 +47,6 @@ function App() {
         onOpenRegister={() => setShowRegisterModal(true)}
       />
       
-      
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route 
@@ -72,12 +69,9 @@ function App() {
               : <Navigate to="/" />
           } 
         />
-        
-        
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
-      
       <LoginModal 
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}
