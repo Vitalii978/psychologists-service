@@ -49,7 +49,7 @@ function App() {
         onOpenRegister={() => setShowRegisterModal(true)}
       />
       
-      {/* ВСЕ <Route> ДОЛЖНЫ БЫТЬ ВНУТРИ <Routes> */}
+      
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route 
@@ -73,11 +73,11 @@ function App() {
           } 
         />
         
-        {/* Для несуществующих путей - перенаправляем на главную */}
+        
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
-      {/* Модальные окна ВНЕ <Routes> */}
+      
       <LoginModal 
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}

@@ -1,12 +1,8 @@
-/* src/components/Header/Header.css */
-
-/* Главный контейнер header - занимает всю ширину */
 .header {
   width: 100%;
   border-bottom: 1px solid rgba(25, 26, 21, 0.1);
 }
 
-/* Внутренний контейнер для содержимого */
 .header-container {
   margin: 0 auto;
   display: flex;

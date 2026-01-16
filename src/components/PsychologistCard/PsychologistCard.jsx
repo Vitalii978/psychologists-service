@@ -9,7 +9,7 @@ const PsychologistCard = ({
   onRemoveFavorite = null,
   onFavoriteToggle = null,
   user = null,
-  onOpenAuthRequired = null, // ДОБАВЛЯЕМ ЭТОТ ПРОПС
+  onOpenAuthRequired = null, 
 }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
@@ -27,15 +27,13 @@ const PsychologistCard = ({
   };
 
   const handleAppointmentClick = () => {
-    // ПРОВЕРЯЕМ АВТОРИЗАЦИЮ
     if (!user) {
       if (onOpenAuthRequired) {
-        onOpenAuthRequired(); // Открываем модалку с сообщением
+        onOpenAuthRequired(); 
       }
-      return; // Не открываем форму записи
+      return; 
     }
 
-    // Если пользователь авторизован - открываем форму
     setShowAppointmentModal(true);
   };
 
@@ -168,7 +166,7 @@ const PsychologistCard = ({
               <div className="appointment-section">
                 <button
                   className="appointment-btn"
-                  onClick={handleAppointmentClick} // ИЗМЕНЕН ОБРАБОТЧИК
+                  onClick={handleAppointmentClick} 
                 >
                   Make an appointment
                 </button>
@@ -178,7 +176,6 @@ const PsychologistCard = ({
         </div>
       </div>
 
-      {/* Модалка записи открывается ТОЛЬКО для авторизованных */}
       {user && (
         <AppointmentModal
           isOpen={showAppointmentModal}

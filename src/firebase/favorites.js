@@ -1,22 +1,14 @@
-// ============================================
-// ФАЙЛ: src/firebase/favorites.js
-// ФУНКЦИИ ДЛЯ РАБОТЫ С ИЗБРАННЫМИ В FIREBASE
-// ============================================
-
 import { ref, set, get, remove } from 'firebase/database';
 import { db } from './config';
 
-// 1. ДОБАВИТЬ В ИЗБРАННОЕ
 export const addToFavorites = async (
   userId,
   psychologistId,
   psychologistData
 ) => {
   try {
-    // Создаем путь: favorites/userId/psychologistId
     const favoriteRef = ref(db, `favorites/${userId}/${psychologistId}`);
 
-    // Сохраняем данные психолога
     await set(favoriteRef, {
       ...psychologistData,
       addedAt: new Date().toISOString(),
@@ -28,7 +20,6 @@ export const addToFavorites = async (
   }
 };
 
-// 2. УДАЛИТЬ ИЗ ИЗБРАННОГО
 export const removeFromFavorites = async (userId, psychologistId) => {
   try {
     const favoriteRef = ref(db, `favorites/${userId}/${psychologistId}`);
@@ -39,7 +30,6 @@ export const removeFromFavorites = async (userId, psychologistId) => {
   }
 };
 
-// 3. ПОЛУЧИТЬ ВСЕ ИЗБРАННЫЕ ПОЛЬЗОВАТЕЛЯ
 export const getUserFavorites = async userId => {
   try {
     const favoritesRef = ref(db, `favorites/${userId}`);
@@ -47,7 +37,7 @@ export const getUserFavorites = async userId => {
 
     if (snapshot.exists()) {
       const favoritesObject = snapshot.val();
-      // Преобразуем объект в массив
+
       const favoritesArray = Object.keys(favoritesObject).map(key => ({
         id: key,
         ...favoritesObject[key],
@@ -62,7 +52,6 @@ export const getUserFavorites = async userId => {
   }
 };
 
-// 4. ПРОВЕРИТЬ ЕСТЬ ЛИ В ИЗБРАННОМ
 export const isPsychologistFavorite = async (userId, psychologistId) => {
   try {
     const favoriteRef = ref(db, `favorites/${userId}/${psychologistId}`);
@@ -73,11 +62,10 @@ export const isPsychologistFavorite = async (userId, psychologistId) => {
   }
 };
 
-// 5. ПОЛУЧИТЬ СТАТУСЫ ИЗБРАННОГО ДЛЯ СПИСКА
 export const getFavoritesStatus = async (userId, psychologistIds) => {
   try {
     if (!userId) {
-      // Если нет пользователя - все false
+
       const statuses = {};
       psychologistIds.forEach(id => {
         statuses[id] = false;

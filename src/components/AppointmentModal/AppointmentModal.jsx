@@ -1,8 +1,3 @@
-// ============================================
-// ФАЙЛ: src/components/AppointmentModal/AppointmentModal.jsx
-// ОБНОВЛЕННАЯ ВЕРСИЯ С СОХРАНЕНИЕМ В FIREBASE
-// ============================================
-
 import { useEffect, useState, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,7 +7,6 @@ import svg from '../../assets/images/icons.svg';
 import TimeSelect from './TimeSelect';
 import { saveAppointment } from '../../firebase/appointments';
 
-// Схема валидации
 const appointmentSchema = yup.object({
   name: yup
     .string()
@@ -65,7 +59,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
     },
   });
 
-  // Функция закрытия с очисткой состояний
   const handleClose = useCallback(() => {
     onClose();
     reset();
@@ -73,7 +66,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
     setSubmitSuccess(false);
   }, [onClose, reset]);
 
-  // Функция отправки формы с сохранением в Firebase
   const onSubmit = async data => {
     if (!psychologist) {
       setSubmitError('Psychologist information is missing');
@@ -104,7 +96,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
     }
   };
 
-  // Обработчик Escape
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.key === 'Escape' && isOpen) {
@@ -118,7 +109,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
     };
   }, [isOpen, handleClose]);
 
-  // Закрытие по клику на backdrop
   const handleBackdropClick = useCallback(
     e => {
       if (e.target === e.currentTarget) {
@@ -136,7 +126,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
         className="modal-content-appointment"
         onClick={e => e.stopPropagation()}
       >
-        {/* Заголовок с кнопкой закрытия */}
         <div className="modal-header-appointment">
           <h2 className="modal-title">
             Make an appointment with a psychologist
@@ -148,7 +137,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
           </button>
         </div>
 
-        {/* Описание */}
         <div className="modal-description">
           <p className="description-text">
             You are on the verge of changing your life for the better. Fill out
@@ -158,7 +146,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
           </p>
         </div>
 
-        {/* Информация о психологе */}
         <div className="psychologist-info-with-photo">
           <div className="psychologist-photo">
             {psychologist?.avatar_url ? (
@@ -183,7 +170,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
           </div>
         </div>
 
-        {/* Сообщения об ошибке и успехе */}
         {submitError && <div className="form-error-message">{submitError}</div>}
 
         {submitSuccess && (
@@ -193,9 +179,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
           </div>
         )}
 
-        {/* Форма */}
         <form className="appointment-form" onSubmit={handleSubmit(onSubmit)}>
-          {/* Поле Name */}
           <div className="form-group">
             <input
               type="text"
@@ -210,7 +194,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
             )}
           </div>
 
-          {/* Поле Email */}
           <div className="form-group">
             <input
               type="email"
@@ -224,8 +207,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
               <span className="error-message">{errors.email.message}</span>
             )}
           </div>
-
-          {/* Поля Phone и Meeting Time */}
           <div className="form-row">
             <div className="form-group form-group-half">
               <Controller
@@ -277,7 +258,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
             </div>
           </div>
 
-          {/* Поле Comment */}
           <div className="form-group">
             <textarea
               id="comment"
@@ -292,7 +272,6 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
             )}
           </div>
 
-          {/* Кнопка Send */}
           <div className="form-buttons">
             <button
               type="submit"

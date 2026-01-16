@@ -1,12 +1,9 @@
-// import Header from '../../components/Header/Header';
 import './HomePage.css';
 import svg from '../../assets/images/icons.svg';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
-    // <div className="home-page">
-
     <main className="home-main">
       <div className="home-content">
         <div className="home-left">
@@ -59,7 +56,6 @@ const HomePage = () => {
         </div>
       </div>
     </main>
-    // </div>
   );
 };
 

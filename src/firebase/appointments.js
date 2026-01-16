@@ -1,8 +1,3 @@
-// ============================================
-// ФАЙЛ: src/firebase/appointments.js
-// ФУНКЦИИ ДЛЯ СОХРАНЕНИЯ ЗАЯВОК НА ПРИЕМ
-// ============================================
-
 import { ref, push, set } from 'firebase/database';
 import { db } from './config';
 
@@ -19,24 +14,20 @@ export const saveAppointment = async (
   userId = null
 ) => {
   try {
-    // Создаем уникальный ID для заявки
     const appointmentsRef = ref(db, 'appointments');
     const newAppointmentRef = push(appointmentsRef);
 
-    // Подготовка данных для сохранения
     const appointmentToSave = {
       ...appointmentData,
       psychologistId: psychologistId,
-      status: 'pending', // Статус: pending, confirmed, cancelled
+      status: 'pending', 
       createdAt: new Date().toISOString(),
     };
 
-    // Если пользователь авторизован - сохраняем его ID
     if (userId) {
       appointmentToSave.userId = userId;
     }
 
-    // Сохраняем в Firebase
     await set(newAppointmentRef, appointmentToSave);
 
     return {

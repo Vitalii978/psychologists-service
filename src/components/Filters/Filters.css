@@ -1,4 +1,3 @@
-/* Стили для компонента Filters */
 .filters-section {
   margin-bottom: 32px;
   width: 226px;
@@ -12,12 +11,10 @@
   margin-bottom: 8px;
 }
 
-/* Обертка для select */
 .filter-select-wrapper {
   position: relative;
 }
 
-/* Стрелка в фильтре */
 .filter-select-wrapper::after {
   content: '';
   position: absolute;
@@ -58,7 +55,6 @@
   border-color: #3470ff;
 }
 
-/* Опции в выпадающем списке */
 .filter-select option {
   font-weight: 400;
   font-size: 16px;
@@ -72,8 +68,4 @@
   color: #191a15;
 }
 
-@media screen and (max-width: 768px) {
-  .filters-section {
-    /* width: 100%; */
-  }
-}
+

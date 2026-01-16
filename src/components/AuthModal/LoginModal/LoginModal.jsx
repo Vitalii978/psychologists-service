@@ -6,7 +6,6 @@ import { loginUser } from '../../../firebase/auth';
 import '../RegisterModal/RegisterModal.css';
 import svg from '../../../assets/images/icons.svg';
 
-// Схема валидации
 const schema = yup.object({
   email: yup
     .string()
@@ -19,12 +18,11 @@ const schema = yup.object({
 });
 
 function LoginModal({ isOpen, onClose }) {
-  // Состояния компонента
-  const [error, setError] = useState(''); // Для ошибок Firebase
-  const [loading, setLoading] = useState(false); // Индикатор загрузки
-  const [showPassword, setShowPassword] = useState(false); // Показать/скрыть пароль
 
-  // Настройка react-hook-form
+  const [error, setError] = useState(''); 
+  const [loading, setLoading] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -34,7 +32,6 @@ function LoginModal({ isOpen, onClose }) {
     resolver: yupResolver(schema),
   });
 
-  // Функция закрытия модалки
   const handleClose = useCallback(() => {
     onClose();
     reset();
@@ -42,39 +39,35 @@ function LoginModal({ isOpen, onClose }) {
     setShowPassword(false);
   }, [onClose, reset]);
 
-  // Обработка отправки формы
   const onSubmit = async data => {
-    setError(''); // Очищаем предыдущие ошибки
-    setLoading(true); // Включаем загрузку
+    setError(''); 
+    setLoading(true); 
 
     try {
-      // Вызываем функцию логина из auth.js
       const result = await loginUser(data.email, data.password);
 
       if (result.success) {
-        // Успешный логин - закрываем модалку
+
         handleClose();
       } else {
-        // Ошибка от Firebase - показываем сообщение
+
         setError(result.error || 'Invalid email or password');
       }
     } catch (err) {
-      // Непредвиденная ошибка
+
       setError('An unexpected error occurred. Please try again.');
       console.error('Login error:', err);
     } finally {
-      setLoading(false); // Выключаем загрузку
+      setLoading(false);
     }
   };
 
-  // Закрытие по клику на фон
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       handleClose();
     }
   };
 
-  // Закрытие по клавише Escape
   useEffect(() => {
     const handleEscape = e => {
       if (e.key === 'Escape' && isOpen) {
@@ -95,14 +88,12 @@ function LoginModal({ isOpen, onClose }) {
           <h2>Log In</h2>
         </div>
 
-        {/* Кнопка закрытия модалки */}
         <button className="close-btn" onClick={handleClose}>
           <svg>
             <use href={`${svg}#icon-close`}></use>
           </svg>
         </button>
 
-        {/* Поясняющий текст */}
         <div className="modal-description">
           <p className="description-text">
             Welcome back! Please enter your credentials to access your account
@@ -110,12 +101,9 @@ function LoginModal({ isOpen, onClose }) {
           </p>
         </div>
 
-        {/* Сообщение об ошибке от Firebase */}
         {error && <div className="auth-error">{error}</div>}
 
-        {/* Форма логина */}
         <form className="form-group" onSubmit={handleSubmit(onSubmit)}>
-          {/* Поле Email */}
           <div className="input-group">
             <input
               type="email"
@@ -129,7 +117,6 @@ function LoginModal({ isOpen, onClose }) {
             )}
           </div>
 
-          {/* Поле Password с кнопкой показа/скрытия */}
           <div className="input-group password-group">
             <input
               type={showPassword ? 'text' : 'password'}
@@ -158,7 +145,6 @@ function LoginModal({ isOpen, onClose }) {
             )}
           </div>
 
-          {/* Кнопка отправки формы */}
           <button type="submit" className="submit-btn" disabled={loading}>
             {loading ? 'Loading...' : 'Log In'}
           </button>

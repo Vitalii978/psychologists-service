@@ -3,7 +3,7 @@
   min-height: 100vh;
   background-color: #fbfbfb;
   width: 100%;
-  overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+  overflow-x: hidden;
   background: linear-gradient(to left top, #3470ff, rgba(25, 26, 21, 0) 50%);
 }
 
@@ -20,7 +20,7 @@
 
 .home-left {
   max-width: 595px;
-  order: 1; /* Всегда сверху на мобильных */
+  order: 1; 
 }
 
 .home-title {
@@ -81,7 +81,7 @@
 
 .home-right {
   width: 100%;
-  order: 2; /* Всегда снизу на мобильных */
+  order: 2; 
   max-width: 464px;
   height: 526px;
 }
@@ -98,13 +98,6 @@
   background-size: cover;
   border-radius: 10px;
 }
-
-/* @media (min-device-pixel-ratio: 2),
-  (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-  background-image: url('/src/assets/images/hero@2x.jpg');
-} */
 
 .green-square {
   position: absolute;

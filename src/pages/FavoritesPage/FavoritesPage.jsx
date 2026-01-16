@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // ДОБАВЛЯЕМ ИМПОРТ
+import { useNavigate } from 'react-router-dom'; 
 import './FavoritesPage.css';
 import PsychologistCard from '../../components/PsychologistCard/PsychologistCard';
 import Filters from '../../components/Filters/Filters';
@@ -7,7 +7,7 @@ import { getUserFavorites, removeFromFavorites } from '../../firebase/favorites'
 import svg from '../../assets/images/icons.svg';
 
 const FavoritesPage = ({ user, onOpenAuthRequired }) => {
-  // Используем useNavigate для навигации вместо window.location
+
   const navigate = useNavigate();
   
   const [sortOption, setSortOption] = useState('show-all');
@@ -16,7 +16,6 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Проверяем прокрутку для кнопки "Наверх"
   useEffect(() => {
     const checkScroll = () => {
       if (window.scrollY > 300) {
@@ -32,7 +31,6 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
     return () => window.removeEventListener('scroll', checkScroll);
   }, []);
 
-  // Загружаем избранные психологов
   useEffect(() => {
     const loadFavorites = async () => {
       try {
@@ -64,7 +62,6 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
     loadFavorites();
   }, [user]);
 
-  // Удаление из избранного
   const handleRemoveFavorite = async (psychologistId) => {
     if (!user) return;
     
@@ -81,7 +78,7 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
     }
   };
 
-  // Сортировка избранных
+  
   const sortFavorites = (favoritesList) => {
     const sorted = [...favoritesList];
     
@@ -103,7 +100,7 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
     }
   };
 
-  // Загрузка еще психологов
+  
   const handleLoadMore = () => {
     setVisibleCount(prev => prev + 3);
   };
@@ -114,23 +111,22 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
 
   return (
     <div className="favorites-page">
-      {/* Якорь для кнопки "Наверх" */}
+      
       <a id="favorites-top" className="page-anchor"></a>
       
       <main className="favorites-main">
         <div className="container">
           
-          {/* Фильтры для сортировки */}
-          <Filters sortOption={sortOption} setSortOption={setSortOption} />
           
-          {/* Индикатор загрузки */}
+          <Filters sortOption={sortOption} setSortOption={setSortOption} />
+
           {isLoading ? (
             <div className="loading-container">
               <div className="loading-spinner"></div>
               <p className="loading-text">Loading your favorites...</p>
             </div>
           ) : (
-            // Если нет избранных
+
             isEmpty ? (
               <div className="empty-favorites">
                 <div className="empty-icon">❤️</div>
@@ -139,7 +135,7 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
                   You haven't added any psychologists to your favorites list.
                   Browse psychologists and click the heart icon to add them here.
                 </p>
-                {/* ИСПРАВЛЕНА КНОПКА - используем navigate вместо window.location */}
+
                 <button 
                   className="browse-btn"
                   onClick={() => navigate('/psychologists')}
@@ -148,7 +144,7 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
                 </button>
               </div>
             ) : (
-              // Если есть избранные
+
               <>
                 <div className="favorites-grid">
                   {visibleFavorites.map(psychologist => (
@@ -163,7 +159,6 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
                   ))}
                 </div>
                 
-                {/* Кнопка "Load more" если есть еще психологи */}
                 {visibleCount < favorites.length && (
                   <div className="load-more-container">
                     <button 
@@ -181,7 +176,6 @@ const FavoritesPage = ({ user, onOpenAuthRequired }) => {
         </div>
       </main>
 
-      {/* Кнопка "Наверх" (показывается при прокрутке) */}
       {showBackToTop && (
         <a href="#favorites-top" className="back-to-top-button" aria-label="Back to top">
           <svg className="back-to-top-icon">

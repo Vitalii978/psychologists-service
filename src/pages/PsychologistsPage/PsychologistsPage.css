@@ -1,4 +1,3 @@
-/* Основные стили страницы Psychologists */
 .psychologists-page {
   width: 100%;
   min-height: 100vh;
@@ -17,23 +16,19 @@
   margin: 0 auto;
 }
 
-/* Сетка карточек - ОДИН СТОЛБЕЦ */
 .psychologists-grid {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-/* Контейнер для кнопки Load More */
 .load-more-container {
   display: flex;
   justify-content: center;
   margin-top: 64px;
 }
 
-/* Кнопка Load more - СИНЯЯ с БЕЛЫМ текстом */
 .load-more-btn {
-  /* display: none; */
   max-width: 176px !important;
   padding: 14px 48px;
   border: 1px solid #3470ff;
@@ -59,7 +54,6 @@
   transform: translateY(0);
 }
 
-/* Адаптивность */
 @media screen and (max-width: 1195px) {
   .psychologists-main {
     padding: 48px 36px;
@@ -71,12 +65,10 @@
     padding: 48px 16px;
   }
   .load-more-btn {
-    /* display: none; */
     max-width: 176px;
   }
 }
 
-/* Стили для якоря */
 .page-anchor {
   position: absolute;
   top: -100px;
@@ -86,7 +78,6 @@
   pointer-events: none;
 }
 
-/* Круглая кнопка "Наверх" */
 .back-to-top-button {
   position: fixed;
   bottom: 30px;
@@ -121,7 +112,7 @@
   stroke-width: 2;
 }
 
-/* Адаптивность */
+
 @media (max-width: 768px) {
   .back-to-top-button {
     bottom: 20px;
