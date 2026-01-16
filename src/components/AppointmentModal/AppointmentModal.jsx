@@ -137,7 +137,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist, user }) => {
           </button>
         </div>
 
-        <div className="modal-description">
+        <div className="modal-description-AppointmentModal">
           <p className="description-text">
             You are on the verge of changing your life for the better. Fill out
             the short form below to book your personal appointment with a
